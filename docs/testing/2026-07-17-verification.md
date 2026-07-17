@@ -51,7 +51,9 @@ This record does **not** claim a successful live GPT-5.6 response. Live verifica
 ## Cloudflare deployment status
 
 - Worker: `stillmeaning`
-- Deployment URL: https://stillmeaning.stack-labs-dev.workers.dev
+- Current deployment URL: https://stillmeaning.alexliluz.workers.dev
+- On 2026-07-18, the account-level `workers.dev` subdomain was renamed to `alexliluz`; Cloudflare API readback confirmed the new subdomain and that the existing `stillmeaning` Worker route remains enabled. The Worker identity and deployment were not recreated.
+- A 2026-07-18 HTTPS check of the new hostname from the same development network still timed out after 15 seconds with HTTP status `000`, so this record does not claim an externally rendered page from that network.
 - Worker startup time reported at deployment: 30 ms
 - `OPENAI_API_KEY` is present as a Cloudflare `secret_text` binding; the value was never printed or committed.
 - The deployed Secret Change version is receiving 100% of Worker traffic according to Wrangler.
