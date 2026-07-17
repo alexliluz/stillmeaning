@@ -6,6 +6,14 @@ StillMeaning is an AI-assisted motion accessibility workbench for frontend devel
 
 Built for the Developer Tools track of OpenAI Build Week 2026.
 
+## Live demo
+
+The current Cloudflare Workers deployment is:
+
+https://stillmeaning.stack-labs-dev.workers.dev
+
+The three curated examples remain usable if live GPT-5.6 is unavailable and always disclose fallback provenance. Some networks block the shared `workers.dev` domain; use the local setup below if the demo URL is unreachable.
+
 ## The problem
 
 Web animation is often functional, not decorative. A moving progress bar communicates activity, a checkmark confirms an outcome, and a sliding panel explains hierarchy and context. A blanket `animation: none` rule may reduce discomfort while also deleting information.
@@ -125,6 +133,23 @@ Build Week Codex credits and OpenAI Platform API credits are separate. Codex cre
 | `pnpm test:e2e` | Run desktop and mobile Playwright journeys |
 | `pnpm build` | Build the production application |
 | `pnpm start` | Run the production build |
+| `pnpm build:cloudflare` | Build the Cloudflare Workers/OpenNext bundle |
+| `pnpm preview:cloudflare` | Run the bundle locally in the Workers runtime |
+| `pnpm deploy:cloudflare` | Deploy to the configured Cloudflare Worker |
+| `pnpm cf-typegen` | Regenerate ignored Cloudflare runtime declarations |
+
+## Cloudflare deployment
+
+StillMeaning deploys as a Next.js 16 application on Cloudflare Workers through OpenNext. The Worker uses the Node.js compatibility layer, serves static assets through the `ASSETS` binding, and stores `OPENAI_API_KEY` only as a Cloudflare Secret.
+
+After authenticating Wrangler, set the secret without putting it in shell history and deploy:
+
+```bash
+pnpm exec wrangler secret put OPENAI_API_KEY
+pnpm deploy:cloudflare
+```
+
+The deployment command preserves dashboard variables and secrets. `.open-next`, `.wrangler`, generated runtime declarations, `.dev.vars`, and `.env` files are Git-ignored.
 
 ## Supported experience
 
@@ -136,7 +161,7 @@ Build Week Codex credits and OpenAI Platform API credits are separate. Codex cre
 
 ## Verification
 
-The current release passes lint, strict type checking, 33 Vitest tests, a production build, and 8 Playwright tests across desktop and mobile Chromium. The browser suite covers all three cases, focus movement, keyboard order, clipboard feedback, custom-source bounds, and system reduced-motion behavior.
+The current release passes lint, strict type checking, 33 Vitest tests, a production build, and 8 Playwright tests across desktop and mobile Chromium. The same 8 browser tests pass against a local Cloudflare `workerd` preview. The browser suite covers all three cases, focus movement, keyboard order, clipboard feedback, custom-source bounds, and system reduced-motion behavior.
 
 See [the verification record](docs/testing/2026-07-17-verification.md) for exact results and the honest live-API limitation observed in this development environment.
 
@@ -152,7 +177,7 @@ Before the final Devpost submission, run `/feedback` in the primary Codex sessio
 - It does not execute arbitrary source or generated code, so custom-source before/after previews are intentionally disabled.
 - Meaning checks validate bounded evidence in the generated result; they are not a complete accessibility audit.
 - The deterministic fallback covers only the three curated cases.
-- A public hosted demo is not yet configured in this repository.
+- The shared `workers.dev` hostname may be blocked by some regional networks; a custom domain remains an optional reliability improvement.
 
 ## Research and decisions
 

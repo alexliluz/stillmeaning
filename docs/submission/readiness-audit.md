@@ -10,7 +10,7 @@ This is a read-only audit of the live Devpost project and the official OpenAI Bu
 - Hackathon: OpenAI Build Week (`openai`)
 - Category to select: **Developer Tools**
 - Repository: https://github.com/alexliluz/stillmeaning
-- Public hosted demo: not yet available
+- Public hosted demo: https://stillmeaning.stack-labs-dev.workers.dev
 - Public YouTube video: not yet available
 - `/feedback` Session ID: not yet generated
 
@@ -27,17 +27,17 @@ Those claims must be replaced before submission. The accurate Project Story is i
 | Field | Required | Prepared value/status |
 | --- | --- | --- |
 | Submitter Type | Yes | Requires entrant confirmation |
-| Country of Residence | Yes | Requires entrant confirmation and official-rules eligibility check |
+| Country of Residence | Yes | United States — confirmed by entrant; included by the official rules |
 | Category | Yes | Developer Tools |
 | Code repository URL | Yes | https://github.com/alexliluz/stillmeaning |
-| Judge test URL/instructions | No globally, expected for developer tools | Hosted demo still required for a strong submission |
+| Judge test URL/instructions | No globally, expected for developer tools | Cloudflare Workers URL deployed; external-network verification remains |
 | `/feedback` Codex Session ID | Yes | Must be generated in this primary session |
 | Developer-tool installation/platform/testing instructions | Expected for this track | Draft below |
 | Demo video | Yes | Public YouTube, under 3 minutes, spoken explanation of both Codex and GPT-5.6 |
 
 ## Developer-tool instructions draft
 
-StillMeaning is a responsive web application supporting current desktop and mobile browsers. Judges can use the hosted demo at `[ADD DEMO URL]` without an account. Select any of the three built-in examples—Upload progress, Save confirmation, or Panel hierarchy—to follow the deterministic golden path. Compare Original and StillMeaning Version, switch Normal/Reduced motion, review the Meaning Preserved evidence, and inspect or copy the generated code.
+StillMeaning is a responsive web application supporting current desktop and mobile browsers. Judges can use the hosted demo at `https://stillmeaning.stack-labs-dev.workers.dev` without an account. Select any of the three built-in examples—Upload progress, Save confirmation, or Panel hierarchy—to follow the deterministic golden path. Compare Original and StillMeaning Version, switch Normal/Reduced motion, review the Meaning Preserved evidence, and inspect or copy the generated code.
 
 To run locally: install Node.js 24+ and pnpm 11.9+, clone `https://github.com/alexliluz/stillmeaning.git`, run `pnpm install`, copy `.env.example` to `.env.local`, and run `pnpm dev`. The three curated cases work with a clearly labeled deterministic fallback. Live pasted-source analysis requires a server-side OpenAI Platform API key with GPT-5.6 access. Generated or pasted code is never executed.
 
@@ -52,12 +52,12 @@ To run locally: install Node.js 24+ and pnpm 11.9+, clone `https://github.com/al
 
 ## Eligibility check
 
-The official rules limit participation by country or territory and require entrants to be above the legal age of majority in their country of residence. The entrant must personally confirm the correct country of residence and eligibility before final submission. Location cannot be inferred from the development machine’s time zone.
+The entrant confirmed the United States as their country of residence. The United States is included in the official rules' eligible-country list. The entrant must still personally confirm that they are above the legal age of majority and meet all other official-rule conditions before final submission.
 
 ## P0 blockers before final submission
 
-1. Confirm entrant type, country of residence, and eligibility.
-2. Deploy a public, judge-ready demo or provide an equivalent zero-rebuild testing path.
+1. Confirm entrant type, legal age of majority, and all remaining eligibility conditions.
+2. Verify the deployed `workers.dev` URL from an external network; add a custom domain if regional reachability is unreliable.
 3. Verify at least one successful live GPT-5.6 analysis from the deployed environment.
 4. Replace the inaccurate live Devpost description with the repository-backed Project Story.
 5. Create and upload a 3:2 thumbnail plus selected screenshots.
