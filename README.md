@@ -45,7 +45,7 @@ Developers can also paste HTML, CSS, JavaScript, or React source. Pasted source 
 flowchart LR
   UI["Next.js workbench"] -->|"exampleId or sourceCode"| API["POST /api/analyze"]
   API --> V["Zod request validation"]
-  V --> S["Analysis service + 12 s timeout"]
+  V --> S["Analysis service + 30 s timeout"]
   S -->|"server-only key"| O["OpenAI Responses API · GPT-5.6"]
   O --> Z["Strict structured output + re-validation"]
   Z --> UI
@@ -74,7 +74,7 @@ The provider uses the OpenAI Responses API with:
 - a strict Zod schema and a second application-side parse;
 - low reasoning effort and a 6,000-token output ceiling;
 - `store: false`;
-- an abort signal and 12-second service timeout.
+- an abort signal and 30-second service timeout.
 
 The model can never set its own provenance. The service overwrites `source` with `gpt-5.6` only after successful validation.
 

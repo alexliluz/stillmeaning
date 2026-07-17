@@ -6,7 +6,7 @@ import {
 import { getFallbackAnalysis } from "../../domain/examples";
 import type { AnalysisProvider } from "./provider";
 
-const DEFAULT_TIMEOUT_MS = 12_000;
+const DEFAULT_TIMEOUT_MS = 30_000;
 
 export interface AnalysisServiceDependencies {
   apiKey: string | undefined;

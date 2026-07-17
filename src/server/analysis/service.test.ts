@@ -73,6 +73,42 @@ describe("analyzeMotion", () => {
     expect(result.notice).toMatch(/timed out/i);
   });
 
+  it("allows a valid structured response that takes 15 seconds by default", async () => {
+    vi.useFakeTimers();
+    try {
+      const provider: AnalysisProvider = {
+        analyze: vi.fn((_request, signal) =>
+          new Promise((resolve, reject) => {
+            const responseTimer = setTimeout(
+              () => resolve(progressAnalysis()),
+              15_000,
+            );
+            signal.addEventListener(
+              "abort",
+              () => {
+                clearTimeout(responseTimer);
+                reject(new Error("aborted"));
+              },
+              { once: true },
+            );
+          }),
+        ),
+      };
+
+      const resultPromise = analyzeMotion(
+        { exampleId: "progress-upload" },
+        { apiKey: "test-only", provider },
+      );
+      await vi.advanceTimersByTimeAsync(15_000);
+      const result = await resultPromise;
+
+      expect(result.analysis.source).toBe("gpt-5.6");
+      expect(result.notice).toBeUndefined();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it("does not fabricate demo analysis for custom source", async () => {
     const provider: AnalysisProvider = { analyze: vi.fn() };
 

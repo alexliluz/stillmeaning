@@ -1,26 +1,28 @@
 # Submission readiness audit — 2026-07-17
 
-This is a read-only audit of the live Devpost project and the official OpenAI Build Week submission fields. It does not authorize or record a Devpost submission.
+This records the live Devpost project and official OpenAI Build Week submission fields. It does not authorize or record a Devpost competition submission.
 
 ## Current live state
 
 - Project ID: `1340200`
 - Project: StillMeaning
-- State: `submission_draft`
+- Project page state: `published`; the OpenAI Build Week `submitted_at` value remains `null`, so the competition entry has not been submitted
 - Hackathon: OpenAI Build Week (`openai`)
 - Category to select: **Developer Tools**
 - Repository: https://github.com/alexliluz/stillmeaning
 - Public hosted demo: https://stillmeaning.alexliluz.workers.dev
+- Devpost Project Story, Built with tags, repository URL, and demo URL: updated from the repository-backed draft on 2026-07-18
+- 3:2 thumbnail: uploaded on 2026-07-18; two prepared gallery screenshots still require manual upload
 - Public YouTube video: not yet available
 - `/feedback` Session ID: not yet generated
 
 The official deadline returned by Devpost is `2026-07-22T00:00:00Z`, which is July 21 at 5:00 PM Pacific Time and July 22 at 8:00 AM China Standard Time.
 
-## Critical content discrepancy
+## Resolved content discrepancy
 
-The existing live Devpost description predates the implementation and currently claims features that the repository does not contain, including runtime browser animation capture, viewport-relative motion measurement, GSAP remediation, screenshot input to GPT-5.6, automatic Codex modification of a target application, and a three-way comparison against a disable-all version.
+The original live Devpost description predated the implementation and claimed features that the repository does not contain, including runtime browser animation capture, viewport-relative motion measurement, GSAP remediation, screenshot input to GPT-5.6, automatic Codex modification of a target application, and a three-way comparison against a disable-all version.
 
-Those claims must be replaced before submission. The accurate Project Story is in [devpost-project-story.md](devpost-project-story.md). Do not leave the old description live in a final entry.
+Those claims were replaced on 2026-07-18 with the repository-backed Project Story in [devpost-project-story.md](devpost-project-story.md). The Build Week submission itself remains unsubmitted.
 
 ## Official required fields
 
@@ -45,7 +47,7 @@ To run locally: install Node.js 24+ and pnpm 11.9+, clone `https://github.com/al
 
 | Criterion | Current evidence | Remaining improvement |
 | --- | --- | --- |
-| Technological Implementation | Structured GPT-5.6 boundary, schema validation, safe fallback, 33 unit/component tests, 8 browser tests, meaningful Git history | Verify a real deployed GPT-5.6 success path and capture it in the demo |
+| Technological Implementation | Structured GPT-5.6 boundary, schema validation, safe fallback, 34 unit/component tests, 8 browser tests, meaningful Git history | Verify a real deployed GPT-5.6 success path and capture it in the demo |
 | Design | Coherent workbench, before/after focus, responsive and keyboard-accessible interaction; 3:2 thumbnail and two additional product screenshots prepared | Upload the prepared assets and verify their Devpost rendering |
 | Potential Impact | Specific developer and accessibility audience, standards-backed problem, three concrete semantic roles | Keep the two-minute narrative focused on lost meaning rather than generic accessibility |
 | Quality of the Idea | Motion-semantic-first workflow differs from broad scanners and preference emulators in reviewed official materials | Avoid absolute “no competitors” claims; describe the gap as an evidence-based inference |
@@ -57,12 +59,10 @@ The entrant confirmed the United States as their country of residence. The Unite
 ## P0 blockers before final submission
 
 1. Confirm entrant type, legal age of majority, and all remaining eligibility conditions.
-2. Verify the deployed `stillmeaning.alexliluz.workers.dev` URL from an external network. The entrant has chosen not to attach a custom domain.
-3. Verify at least one successful live GPT-5.6 analysis from the deployed environment.
-4. Replace the inaccurate live Devpost description with the repository-backed Project Story.
-5. Upload the prepared 3:2 thumbnail and selected screenshots from `docs/submission/assets`.
-6. Record and publish the public under-three-minute YouTube video.
-7. Run `/feedback` in this primary Codex session and save the real Session ID.
-8. Manually review all fields, then perform the final Devpost submission before the deadline.
+2. Verify at least one successful live GPT-5.6 analysis from the deployed environment.
+3. Manually upload the two prepared gallery screenshots from `docs/submission/assets`; the 3:2 thumbnail is already uploaded.
+4. Record and publish the public under-three-minute YouTube video.
+5. Run `/feedback` in this primary Codex session and save the real Session ID.
+6. Manually review all fields, then perform the final Devpost submission before the deadline.
 
 No automated final submission should be performed without explicit user confirmation.

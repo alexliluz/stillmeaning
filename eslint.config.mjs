@@ -8,6 +8,7 @@ export default defineConfig([
   globalIgnores([
     ".next/**",
     ".open-next/**",
+    ".tmp/**",
     "cloudflare-env.d.ts",
     "coverage/**",
     "playwright-report/**",

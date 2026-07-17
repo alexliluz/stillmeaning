@@ -238,7 +238,7 @@ Expected: FAIL because `analyzeMotion` is missing.
 
 - [ ] **Step 5: Implement provider and service**
 
-Use `openai.responses.parse` with `zodTextFormat`, model `process.env.OPENAI_MODEL ?? 'gpt-5.6'`, a server-only API key, and an AbortSignal. Re-parse the returned object with `analysisSchema`, overwrite `source` with `gpt-5.6`, and normalize all exceptions without returning provider response bodies or secrets. The service uses a 12-second default timeout and deterministic fallback for known examples.
+Use `openai.responses.parse` with `zodTextFormat`, model `process.env.OPENAI_MODEL ?? 'gpt-5.6'`, a server-only API key, and an AbortSignal. Re-parse the returned object with `analysisSchema`, overwrite `source` with `gpt-5.6`, and normalize all exceptions without returning provider response bodies or secrets. The service uses a 30-second default timeout and deterministic fallback for known examples.
 
 - [ ] **Step 6: Verify service GREEN**
 

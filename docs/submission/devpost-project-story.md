@@ -62,7 +62,7 @@ GPT-5.6 performs the core reasoning task rather than acting as a chat decoration
 6. state which meaning is preserved; and
 7. return machine-checkable validation evidence.
 
-The provider uses the Responses API with `store: false`, a 12-second service timeout, a strict Zod-backed schema, bounded input and output, and application-side re-validation. The API key stays on the server. The model cannot set its own provenance, and no generated code is executed in the product.
+The provider uses the Responses API with `store: false`, a 30-second service timeout, a strict Zod-backed schema, bounded input and output, and application-side re-validation. The API key stays on the server. The model cannot set its own provenance, and no generated code is executed in the product.
 
 ## How Codex accelerated development
 
@@ -85,7 +85,7 @@ Finally, showing generated UI code creates a security temptation: executing it w
 - A substantive GPT-5.6 workflow with strict structured output and safe failure handling.
 - Clear provenance that distinguishes live model output from deterministic demo data.
 - A responsive, keyboard-accessible interface that respects `prefers-reduced-motion` itself.
-- A verified release with lint, strict type checking, 33 unit/component tests, a production build, 8 desktop/mobile browser tests, and no known production dependency vulnerabilities at the recorded audit time.
+- A verified release with lint, strict type checking, 34 unit/component tests, a production build, 8 desktop/mobile browser tests, and no known production dependency vulnerabilities at the recorded audit time.
 
 ## What we learned
 
@@ -100,12 +100,12 @@ The next version would add AST-based animation extraction, repository and design
 ## Final submission checklist
 
 - [x] Deploy a public Cloudflare Workers demo and add its URL.
-- [ ] Verify the public `stillmeaning.alexliluz.workers.dev` URL from an external network; no custom domain is planned for this personal project.
+- [x] Verify that `stillmeaning.alexliluz.workers.dev` loads publicly and returns the StillMeaning page title; no custom domain is planned for this personal project.
 - [ ] Verify one successful live GPT-5.6 response from the deployed environment.
 - [ ] Record and publish the under-three-minute YouTube video.
-- [x] Prepare a 3:2 thumbnail and selected product screenshots in `docs/submission/assets`; upload them to Devpost.
-- [ ] Paste the Project Story and verified Built with tags.
-- [ ] Add the public GitHub repository URL.
-- [ ] Run the available submission-preparation audit; do not invoke submission automatically.
+- [ ] The 3:2 thumbnail is uploaded; manually add the two prepared product screenshots to the Devpost gallery.
+- [x] Replace the inaccurate draft description with the repository-backed Project Story and verified Built with tags.
+- [x] Add the public GitHub repository URL and hosted demo link.
+- [x] Run the available Devpost plugin submission-requirements audit without invoking submission.
 - [ ] Run `/feedback` in the primary Codex session and save the real Session ID.
 - [ ] Review every field manually, then submit Devpost before the deadline.
