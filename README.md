@@ -136,6 +136,8 @@ Build Week Codex credits and OpenAI Platform API credits are separate. Codex cre
 | `pnpm build:cloudflare` | Build the Cloudflare Workers/OpenNext bundle |
 | `pnpm preview:cloudflare` | Run the bundle locally in the Workers runtime |
 | `pnpm deploy:cloudflare` | Deploy to the configured Cloudflare Worker |
+
+The manual GitHub Actions workflow `Deployed GPT smoke` verifies the public homepage and makes one known-example request to the deployed API. It prints only provenance, notice, semantic role, and validation-count fields, and fails unless the response is visibly sourced from `gpt-5.6`.
 | `pnpm cf-typegen` | Regenerate ignored Cloudflare runtime declarations |
 
 ## Cloudflare deployment

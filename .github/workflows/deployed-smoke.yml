@@ -1,0 +1,44 @@
+name: Deployed GPT smoke
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify deployed homepage
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --retry 2 --max-time 30 \
+            https://stillmeaning.alexliluz.workers.dev/ \
+            | grep -q '<title>StillMeaning'
+
+      - name: Verify live GPT-5.6 analysis
+        run: |
+          set -euo pipefail
+          response="$(
+            curl --fail-with-body --silent --show-error --max-time 60 \
+              -H 'content-type: application/json' \
+              --data '{"exampleId":"progress-upload"}' \
+              https://stillmeaning.alexliluz.workers.dev/api/analyze
+          )"
+
+          safe_summary="$(
+            jq -c '{
+              source: .analysis.source,
+              notice: (.notice // null),
+              semanticRole: .analysis.semanticRole,
+              validationCount: (.analysis.validationChecks | length)
+            }' <<<"$response"
+          )"
+          echo "$safe_summary"
+
+          if [[ "$(jq -r '.analysis.source' <<<"$response")" != 'gpt-5.6' ]]; then
+            echo 'The deployed endpoint did not return a live GPT-5.6 result.' >&2
+            exit 1
+          fi
