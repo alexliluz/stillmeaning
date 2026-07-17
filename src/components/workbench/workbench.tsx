@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import type { Analysis } from "../../domain/analysis";
 import {
@@ -40,7 +40,12 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
   const [sourceOpen, setSourceOpen] = useState(false);
   const [sourceError, setSourceError] = useState<string | undefined>();
   const [customSource, setCustomSource] = useState<string | undefined>();
+  const shellRef = useRef<HTMLDivElement>(null);
   const selected = getMotionExample(selectedId) ?? motionExamples[0];
+
+  useEffect(() => {
+    shellRef.current?.setAttribute("data-ready", "true");
+  }, []);
 
   function selectExample(id: ExampleId) {
     const example = getMotionExample(id);
@@ -113,7 +118,7 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-ready="false" data-testid="workbench" ref={shellRef}>
       <header className="app-header">
         <a className="brand" href="#workspace" aria-label="StillMeaning home">
           <BrandMark />
