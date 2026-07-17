@@ -339,6 +339,22 @@ textarea:focus-visible,
   color: var(--color-text);
 }
 
+.source-toggle {
+  min-height: 29px;
+  padding: 0 10px;
+  border: 1px solid #35516d;
+  border-radius: 5px;
+  background: #0d1d2c;
+  color: #a5bed5;
+  cursor: pointer;
+  font-size: 0.62rem;
+}
+
+.source-toggle[aria-expanded="true"] {
+  border-color: #4f93c0;
+  color: var(--color-cyan);
+}
+
 .comparison-grid {
   display: grid;
   min-height: 430px;
@@ -700,6 +716,215 @@ textarea:focus-visible,
 @keyframes preview-panel-fade {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+.source-input,
+.code-diff,
+.safe-preview-message {
+  margin-top: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #09131d;
+}
+
+.source-input {
+  padding: var(--space-4);
+}
+
+.source-input__heading,
+.source-input__footer,
+.code-diff__header,
+.code-diff__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.source-input label {
+  display: block;
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+
+.source-input__heading p,
+.source-input__footer p {
+  margin: 5px 0 0;
+  color: #73869d;
+  font-size: 0.62rem;
+}
+
+.source-input output {
+  color: #7990a9;
+  font-family: var(--font-code);
+  font-size: 0.61rem;
+}
+
+.source-input textarea {
+  width: 100%;
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  resize: vertical;
+  border: 1px solid #2d4258;
+  border-radius: 6px;
+  background: #071019;
+  color: #c7d5e5;
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+.source-input textarea::placeholder {
+  color: #50637a;
+}
+
+.source-input__footer {
+  align-items: flex-start;
+  margin-top: var(--space-3);
+}
+
+.source-input__footer p {
+  max-width: 60%;
+}
+
+.source-input__footer button,
+.code-diff__actions button {
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border: 1px solid #40769a;
+  border-radius: 5px;
+  background: #12314a;
+  color: #bde9f7;
+  cursor: pointer;
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.source-input__footer button:disabled {
+  cursor: not-allowed;
+  opacity: 0.46;
+}
+
+.source-input__status,
+.source-input__error {
+  margin: var(--space-3) 0 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 5px;
+  font-size: 0.65rem;
+}
+
+.source-input__status {
+  background: rgb(59 140 255 / 8%);
+  color: #8ab7e9;
+}
+
+.source-input__error {
+  border: 1px solid #6d3b3b;
+  background: rgb(223 120 120 / 8%);
+  color: #e5a0a0;
+}
+
+.safe-preview-message {
+  display: grid;
+  min-height: 190px;
+  place-content: center;
+  padding: var(--space-8);
+  background:
+    linear-gradient(rgb(255 255 255 / 1.5%) 1px, transparent 1px),
+    #0a1520;
+  background-size: 24px 24px;
+  text-align: center;
+}
+
+.safe-preview-message strong {
+  font-size: 0.86rem;
+}
+
+.safe-preview-message p {
+  max-width: 470px;
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+
+.code-diff {
+  overflow: hidden;
+}
+
+.code-diff__header {
+  min-height: 58px;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.code-diff__header h2 {
+  margin: 5px 0 0;
+  font-size: 0.83rem;
+}
+
+.code-diff__actions {
+  gap: var(--space-3);
+}
+
+.diff-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #718399;
+  font-size: 0.58rem;
+}
+
+.diff-legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: #a44e54;
+}
+
+.diff-legend i[data-change="added"] {
+  background: #3f8b60;
+}
+
+.code-diff__content {
+  max-height: 340px;
+  margin: 0;
+  overflow: auto;
+  background: #071019;
+  color: #aab9ca;
+  font-family: var(--font-code);
+  font-size: 0.62rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+.code-diff__content span {
+  display: block;
+  min-width: max-content;
+  padding: 1px var(--space-4);
+  white-space: pre-wrap;
+}
+
+.code-diff__content span[data-change="removed"] {
+  border-left: 2px solid #9f4c54;
+  background: rgb(132 53 61 / 18%);
+  color: #e0a4a8;
+}
+
+.code-diff__content span[data-change="added"] {
+  border-left: 2px solid #438b61;
+  background: rgb(48 119 76 / 17%);
+  color: #9bd4ad;
+}
+
+.sr-status {
+  min-height: 20px;
+  margin: 0;
+  padding: 4px var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: #7c8fa5;
+  font-size: 0.59rem;
 }
 
 .inspector {

@@ -9,6 +9,8 @@ import {
   type ExampleId,
 } from "../../domain/examples";
 import { BrandMark, SparklesIcon } from "../icons";
+import { CodeDiff } from "../code/code-diff";
+import { SourceInput } from "../code/source-input";
 import {
   PreviewStage,
   type MotionMode,
@@ -35,6 +37,9 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
   );
   const [pending, setPending] = useState(false);
   const [motionMode, setMotionMode] = useState<MotionMode>("normal");
+  const [sourceOpen, setSourceOpen] = useState(false);
+  const [sourceError, setSourceError] = useState<string | undefined>();
+  const [customSource, setCustomSource] = useState<string | undefined>();
   const selected = getMotionExample(selectedId) ?? motionExamples[0];
 
   function selectExample(id: ExampleId) {
@@ -43,11 +48,14 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
     setSelectedId(id);
     setAnalysis(example.fallbackAnalysis);
     setNotice("Deterministic fixture — not a live GPT-5.6 response.");
+    setCustomSource(undefined);
+    setSourceError(undefined);
   }
 
   async function analyzeSelected() {
     setPending(true);
     setNotice("Analyzing with GPT-5.6…");
+    setCustomSource(undefined);
     try {
       const response = await fetch("/api/analyze", {
         method: "POST",
@@ -70,6 +78,35 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
           ? error.message
           : "Analysis could not be completed. The last valid result is still shown.",
       );
+    } finally {
+      setPending(false);
+    }
+  }
+
+  async function analyzeCustomSource(source: string) {
+    setPending(true);
+    setSourceError(undefined);
+    try {
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ sourceCode: source }),
+      });
+      const result = (await response.json()) as {
+        analysis?: Analysis;
+        notice?: string;
+        error?: string;
+      };
+      if (!response.ok || !result.analysis) {
+        throw new Error(result.error ?? "Custom analysis could not be completed.");
+      }
+      setAnalysis(result.analysis);
+      setNotice(result.notice);
+      setCustomSource(source);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Custom analysis could not be completed.";
+      setSourceError(`${message} The last valid result is still shown.`);
     } finally {
       setPending(false);
     }
@@ -106,12 +143,22 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
         <section className="comparison-shell" aria-labelledby="comparison-title">
           <div className="comparison-shell__header">
             <div>
-              <span className="section-kicker">{selected.category}</span>
-              <h1 id="comparison-title">{selected.title}</h1>
-              <p>{selected.description}</p>
+              <span className="section-kicker">
+                {customSource ? "Custom source · safe text analysis" : selected.category}
+              </span>
+              <h1 id="comparison-title">
+                {customSource ? "Pasted animation" : selected.title}
+              </h1>
+              <p>
+                {customSource
+                  ? "Generated code is available in the diff below and is never executed in this preview."
+                  : selected.description}
+              </p>
             </div>
             <div className="comparison-shell__tools">
-              <span className="comparison-shell__id">{selected.id}</span>
+              <span className="comparison-shell__id">
+                {customSource ? analysis.animationId : selected.id}
+              </span>
               <div aria-label="Preview motion mode" className="mode-switch" role="group">
                 <button
                   aria-pressed={motionMode === "normal"}
@@ -128,23 +175,51 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
                   Reduced motion
                 </button>
               </div>
+              <button
+                aria-expanded={sourceOpen}
+                className="source-toggle"
+                onClick={() => setSourceOpen((open) => !open)}
+                type="button"
+              >
+                {sourceOpen ? "Close source input" : "Paste your code"}
+              </button>
             </div>
           </div>
-          <div className="comparison-grid">
-            <PreviewStage
-              exampleId={selectedId}
-              key={`${selectedId}-original`}
-              motionMode={motionMode}
-              version="original"
+          {sourceOpen ? (
+            <SourceInput
+              error={sourceError}
+              onAnalyze={analyzeCustomSource}
+              pending={pending}
             />
-            <div className="comparison-grid__divider" aria-hidden="true">→</div>
-            <PreviewStage
-              exampleId={selectedId}
-              key={`${selectedId}-stillmeaning`}
-              motionMode={motionMode}
-              version="stillmeaning"
-            />
-          </div>
+          ) : null}
+          {customSource ? (
+            <div className="safe-preview-message">
+              <strong>Preview intentionally disabled for generated code</strong>
+              <p>
+                StillMeaning renders model output as reviewable text only. Use the curated examples for the live before/after demonstration.
+              </p>
+            </div>
+          ) : (
+            <div className="comparison-grid">
+              <PreviewStage
+                exampleId={selectedId}
+                key={`${selectedId}-original`}
+                motionMode={motionMode}
+                version="original"
+              />
+              <div className="comparison-grid__divider" aria-hidden="true">→</div>
+              <PreviewStage
+                exampleId={selectedId}
+                key={`${selectedId}-stillmeaning`}
+                motionMode={motionMode}
+                version="stillmeaning"
+              />
+            </div>
+          )}
+          <CodeDiff
+            original={customSource ?? selected.originalCode}
+            revised={analysis.generatedCode}
+          />
         </section>
         <AnalysisInspector analysis={analysis} notice={notice} />
       </main>
