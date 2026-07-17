@@ -85,7 +85,7 @@ Finally, showing generated UI code creates a security temptation: executing it w
 - A substantive GPT-5.6 workflow with strict structured output and safe failure handling.
 - Clear provenance that distinguishes live model output from deterministic demo data.
 - A responsive, keyboard-accessible interface that respects `prefers-reduced-motion` itself.
-- A verified release with lint, strict type checking, 34 unit/component tests, a production build, 8 desktop/mobile browser tests, and no known production dependency vulnerabilities at the recorded audit time.
+- A verified release with lint, strict type checking, 36 unit/component tests, a production build, 8 desktop/mobile browser tests, and no known production dependency vulnerabilities at the recorded audit time.
 
 ## What we learned
 

@@ -138,6 +138,8 @@ Build Week Codex credits and OpenAI Platform API credits are separate. Codex cre
 | `pnpm deploy:cloudflare` | Deploy to the configured Cloudflare Worker |
 
 The manual GitHub Actions workflow `Deployed GPT smoke` verifies the public homepage and makes one known-example request to the deployed API. It prints only provenance, notice, semantic role, and validation-count fields, and fails unless the response is visibly sourced from `gpt-5.6`.
+
+The latest recorded independent run reached the deployed API and correctly failed because the configured OpenAI Platform project returned `insufficient_quota`; see the [verification record](docs/testing/2026-07-17-verification.md). Add separate Platform API quota, then rerun the workflow until it passes before claiming a live GPT-5.6 result.
 | `pnpm cf-typegen` | Regenerate ignored Cloudflare runtime declarations |
 
 ## Cloudflare deployment
