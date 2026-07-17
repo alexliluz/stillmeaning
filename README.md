@@ -10,7 +10,7 @@ Built for the Developer Tools track of OpenAI Build Week 2026.
 
 The current Cloudflare Workers deployment is:
 
-https://stillmeaning.stack-labs-dev.workers.dev
+https://stillmeaning.alexliluz.workers.dev
 
 The three curated examples remain usable if live GPT-5.6 is unavailable and always disclose fallback provenance. Some networks block the shared `workers.dev` domain; use the local setup below if the demo URL is unreachable.
 
