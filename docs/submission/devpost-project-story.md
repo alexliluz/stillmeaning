@@ -100,10 +100,10 @@ The next version would add AST-based animation extraction, repository and design
 ## Final submission checklist
 
 - [x] Deploy a public Cloudflare Workers demo and add its URL.
-- [ ] Verify the public URL from an external network; add a custom domain if `workers.dev` reachability is unreliable.
+- [ ] Verify the public `stillmeaning.alexliluz.workers.dev` URL from an external network; no custom domain is planned for this personal project.
 - [ ] Verify one successful live GPT-5.6 response from the deployed environment.
 - [ ] Record and publish the under-three-minute YouTube video.
-- [ ] Upload a 3:2 thumbnail and selected product screenshots.
+- [x] Prepare a 3:2 thumbnail and selected product screenshots in `docs/submission/assets`; upload them to Devpost.
 - [ ] Paste the Project Story and verified Built with tags.
 - [ ] Add the public GitHub repository URL.
 - [ ] Run the available submission-preparation audit; do not invoke submission automatically.

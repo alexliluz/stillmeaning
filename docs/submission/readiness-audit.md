@@ -46,7 +46,7 @@ To run locally: install Node.js 24+ and pnpm 11.9+, clone `https://github.com/al
 | Criterion | Current evidence | Remaining improvement |
 | --- | --- | --- |
 | Technological Implementation | Structured GPT-5.6 boundary, schema validation, safe fallback, 33 unit/component tests, 8 browser tests, meaningful Git history | Verify a real deployed GPT-5.6 success path and capture it in the demo |
-| Design | Coherent workbench, before/after focus, responsive and keyboard-accessible interaction | Deploy a zero-setup judge experience and prepare polished thumbnail/screenshots |
+| Design | Coherent workbench, before/after focus, responsive and keyboard-accessible interaction; 3:2 thumbnail and two additional product screenshots prepared | Upload the prepared assets and verify their Devpost rendering |
 | Potential Impact | Specific developer and accessibility audience, standards-backed problem, three concrete semantic roles | Keep the two-minute narrative focused on lost meaning rather than generic accessibility |
 | Quality of the Idea | Motion-semantic-first workflow differs from broad scanners and preference emulators in reviewed official materials | Avoid absolute “no competitors” claims; describe the gap as an evidence-based inference |
 
@@ -57,10 +57,10 @@ The entrant confirmed the United States as their country of residence. The Unite
 ## P0 blockers before final submission
 
 1. Confirm entrant type, legal age of majority, and all remaining eligibility conditions.
-2. Verify the deployed `workers.dev` URL from an external network; add a custom domain if regional reachability is unreliable.
+2. Verify the deployed `stillmeaning.alexliluz.workers.dev` URL from an external network. The entrant has chosen not to attach a custom domain.
 3. Verify at least one successful live GPT-5.6 analysis from the deployed environment.
 4. Replace the inaccurate live Devpost description with the repository-backed Project Story.
-5. Create and upload a 3:2 thumbnail plus selected screenshots.
+5. Upload the prepared 3:2 thumbnail and selected screenshots from `docs/submission/assets`.
 6. Record and publish the public under-three-minute YouTube video.
 7. Run `/feedback` in this primary Codex session and save the real Session ID.
 8. Manually review all fields, then perform the final Devpost submission before the deadline.

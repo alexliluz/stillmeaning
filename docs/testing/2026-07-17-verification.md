@@ -10,6 +10,8 @@ Environment:
 
 ## Automated checks
 
+The full local quality suite was rerun on 2026-07-18 after the Cloudflare account subdomain changed to `alexliluz`.
+
 | Check | Result |
 | --- | --- |
 | `pnpm lint` | Pass |
@@ -19,7 +21,7 @@ Environment:
 | `pnpm test:e2e` | Pass — 8 tests across desktop and mobile Chromium |
 | `pnpm audit --prod` | Pass — no known vulnerabilities |
 | `pnpm build:cloudflare` | Pass — Next.js 16.2.10 converted with OpenNext 1.20.1 |
-| `wrangler deploy --dry-run` | Pass — 1087.86 KiB gzip, below the 3 MiB Workers Free limit |
+| `wrangler deploy --dry-run` | Pass — 1087.87 KiB gzip, below the 3 MiB Workers Free limit |
 | Cloudflare `workerd` browser suite | Pass — the same 8 desktop/mobile tests |
 
 The browser suite covers:
@@ -53,9 +55,9 @@ This record does **not** claim a successful live GPT-5.6 response. Live verifica
 - Worker: `stillmeaning`
 - Current deployment URL: https://stillmeaning.alexliluz.workers.dev
 - On 2026-07-18, the account-level `workers.dev` subdomain was renamed to `alexliluz`; Cloudflare API readback confirmed the new subdomain and that the existing `stillmeaning` Worker route remains enabled. The Worker identity and deployment were not recreated.
-- A 2026-07-18 HTTPS check of the new hostname from the same development network still timed out after 15 seconds with HTTP status `000`, so this record does not claim an externally rendered page from that network.
+- A 2026-07-18 HTTPS check of the new hostname from the same development network still timed out after 15 seconds with HTTP status `000`. Follow-up DNS-over-HTTPS checks were also reset or returned no A records from this network, so this record does not claim an externally rendered page from that network.
 - Worker startup time reported at deployment: 30 ms
-- `OPENAI_API_KEY` is present as a Cloudflare `secret_text` binding; the value was never printed or committed.
+- `OPENAI_API_KEY` was confirmed again on 2026-07-18 as an existing Cloudflare `secret_text` binding and was reused; the value was never printed or committed.
 - The deployed Secret Change version is receiving 100% of Worker traffic according to Wrangler.
 - Three known-example API requests returned the expected labeled fallback in a local Workers preview; arbitrary source without a key returned the expected 503.
 - The development network could not connect to the shared `workers.dev` domain. DNS resolved it to an unrelated address and HTTPS timed out, so this record does not claim an externally observed homepage or live GPT-5.6 result from the public URL.

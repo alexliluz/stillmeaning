@@ -177,7 +177,7 @@ Before the final Devpost submission, run `/feedback` in the primary Codex sessio
 - It does not execute arbitrary source or generated code, so custom-source before/after previews are intentionally disabled.
 - Meaning checks validate bounded evidence in the generated result; they are not a complete accessibility audit.
 - The deterministic fallback covers only the three curated cases.
-- The shared `workers.dev` hostname may be blocked by some regional networks; a custom domain remains an optional reliability improvement.
+- The shared `workers.dev` hostname may be blocked by some regional networks. StillMeaning intentionally uses the project-specific `stillmeaning.alexliluz.workers.dev` route without a custom domain; use the local setup when that shared domain is unavailable.
 
 ## Research and decisions
 
