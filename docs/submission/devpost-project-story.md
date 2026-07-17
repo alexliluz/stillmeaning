@@ -102,7 +102,7 @@ The next version would add AST-based animation extraction, repository and design
 - [x] Deploy a public Cloudflare Workers demo and add its URL.
 - [x] Verify that `stillmeaning.alexliluz.workers.dev` loads publicly and returns the StillMeaning page title; no custom domain is planned for this personal project.
 - [ ] Verify one successful live GPT-5.6 response from the deployed environment.
-- [ ] Record and publish the under-three-minute YouTube video.
+- [ ] Review the rendered 2:22 local MP4 draft, upload it publicly to YouTube, and add the URL.
 - [ ] The 3:2 thumbnail is uploaded; manually add the two prepared product screenshots to the Devpost gallery.
 - [x] Replace the inaccurate draft description with the repository-backed Project Story and verified Built with tags.
 - [x] Add the public GitHub repository URL and hosted demo link.

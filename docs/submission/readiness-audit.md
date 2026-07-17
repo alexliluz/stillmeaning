@@ -13,7 +13,7 @@ This records the live Devpost project and official OpenAI Build Week submission 
 - Public hosted demo: https://stillmeaning.alexliluz.workers.dev
 - Devpost Project Story, Built with tags, repository URL, and demo URL: updated from the repository-backed draft on 2026-07-18; Project Story version 5 reflects the deployed 30-second timeout and 34-test suite
 - 3:2 thumbnail: uploaded on 2026-07-18; two prepared gallery screenshots still require manual upload
-- Public YouTube video: not yet available
+- Demo video: verified 2:22 local MP4 draft rendered; public YouTube upload and URL are not yet available
 - `/feedback` Session ID: not yet generated
 
 The official deadline returned by Devpost is `2026-07-22T00:00:00Z`, which is July 21 at 5:00 PM Pacific Time and July 22 at 8:00 AM China Standard Time.
@@ -61,7 +61,7 @@ The entrant confirmed the United States as their country of residence. The Unite
 1. Confirm entrant type, legal age of majority, and all remaining eligibility conditions.
 2. Verify at least one successful live GPT-5.6 analysis from the deployed environment.
 3. Manually upload the two prepared gallery screenshots from `docs/submission/assets`; the 3:2 thumbnail is already uploaded.
-4. Record and publish the public under-three-minute YouTube video.
+4. Review the rendered 2:22 MP4, upload it as a public YouTube video, and add the URL to Devpost.
 5. Run `/feedback` in this primary Codex session and save the real Session ID.
 6. Manually review all fields, then perform the final Devpost submission before the deadline.
 
