@@ -26,4 +26,18 @@ describe("Workbench", () => {
     expect(screen.getByText("Numeric progress remains available")).toBeInTheDocument();
     expect(screen.getByText("Meaning Preserved")).toBeInTheDocument();
   });
+
+  it("lets judges compare normal and reduced motion modes", async () => {
+    const user = userEvent.setup();
+    render(<Workbench initialAnalysis={motionExamples[0].fallbackAnalysis} />);
+
+    const normal = screen.getByRole("button", { name: "Normal motion" });
+    const reduced = screen.getByRole("button", { name: "Reduced motion" });
+    expect(normal).toHaveAttribute("aria-pressed", "true");
+    expect(reduced).toHaveAttribute("aria-pressed", "false");
+
+    await user.click(reduced);
+    expect(normal).toHaveAttribute("aria-pressed", "false");
+    expect(reduced).toHaveAttribute("aria-pressed", "true");
+  });
 });

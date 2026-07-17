@@ -9,6 +9,10 @@ import {
   type ExampleId,
 } from "../../domain/examples";
 import { BrandMark, SparklesIcon } from "../icons";
+import {
+  PreviewStage,
+  type MotionMode,
+} from "../previews/preview-stage";
 import { AnalysisInspector } from "./analysis-inspector";
 import { ExampleList } from "./example-list";
 
@@ -30,6 +34,7 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
       : undefined,
   );
   const [pending, setPending] = useState(false);
+  const [motionMode, setMotionMode] = useState<MotionMode>("normal");
   const selected = getMotionExample(selectedId) ?? motionExamples[0];
 
   function selectExample(id: ExampleId) {
@@ -105,18 +110,40 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
               <h1 id="comparison-title">{selected.title}</h1>
               <p>{selected.description}</p>
             </div>
-            <span className="comparison-shell__id">{selected.id}</span>
+            <div className="comparison-shell__tools">
+              <span className="comparison-shell__id">{selected.id}</span>
+              <div aria-label="Preview motion mode" className="mode-switch" role="group">
+                <button
+                  aria-pressed={motionMode === "normal"}
+                  onClick={() => setMotionMode("normal")}
+                  type="button"
+                >
+                  Normal motion
+                </button>
+                <button
+                  aria-pressed={motionMode === "reduced"}
+                  onClick={() => setMotionMode("reduced")}
+                  type="button"
+                >
+                  Reduced motion
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="comparison-placeholder">
-            <div>
-              <span>Original</span>
-              <strong>Motion carries the cue</strong>
-            </div>
-            <div className="comparison-placeholder__divider" aria-hidden="true">→</div>
-            <div>
-              <span>StillMeaning version</span>
-              <strong>Meaning remains explicit</strong>
-            </div>
+          <div className="comparison-grid">
+            <PreviewStage
+              exampleId={selectedId}
+              key={`${selectedId}-original`}
+              motionMode={motionMode}
+              version="original"
+            />
+            <div className="comparison-grid__divider" aria-hidden="true">→</div>
+            <PreviewStage
+              exampleId={selectedId}
+              key={`${selectedId}-stillmeaning`}
+              motionMode={motionMode}
+              version="stillmeaning"
+            />
           </div>
         </section>
         <AnalysisInspector analysis={analysis} notice={notice} />
