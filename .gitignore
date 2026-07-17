@@ -1,0 +1,13 @@
+.next/
+node_modules/
+coverage/
+playwright-report/
+test-results/
+
+# Local secrets
+.env*
+!.env.example
+
+# Local editor and OS files
+.DS_Store
+*.tsbuildinfo

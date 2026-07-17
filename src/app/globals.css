@@ -1,0 +1,106 @@
+:root {
+  color-scheme: dark;
+  --color-canvas: #071019;
+  --color-rail: #09131d;
+  --color-surface: #0d1722;
+  --color-surface-raised: #111d29;
+  --color-border: #2a394a;
+  --color-border-strong: #3b4c60;
+  --color-text: #f2f6fb;
+  --color-text-muted: #91a3bd;
+  --color-blue: #3b8cff;
+  --color-cyan: #48d7ff;
+  --color-amber: #f4b52f;
+  --color-green: #68c94f;
+  --color-red: #df7878;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --font-ui: Inter, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-code: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --motion-fast: 140ms;
+  --motion-standard: 220ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-canvas);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+.foundation {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.foundation__brand {
+  margin-bottom: var(--space-5);
+  color: var(--color-cyan);
+  font-family: var(--font-code);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.foundation h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 5.75rem);
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+}
+
+.foundation p {
+  max-width: 620px;
+  margin: var(--space-6) auto 0;
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
