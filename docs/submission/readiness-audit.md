@@ -11,7 +11,7 @@ This records the live Devpost project and official OpenAI Build Week submission 
 - Category to select: **Developer Tools**
 - Repository: https://github.com/alexliluz/stillmeaning
 - Public hosted demo: https://stillmeaning.alexliluz.workers.dev
-- Devpost Project Story, Built with tags, repository URL, and demo URL: updated from the repository-backed draft on 2026-07-18
+- Devpost Project Story, Built with tags, repository URL, and demo URL: updated from the repository-backed draft on 2026-07-18; Project Story version 5 reflects the deployed 30-second timeout and 34-test suite
 - 3:2 thumbnail: uploaded on 2026-07-18; two prepared gallery screenshots still require manual upload
 - Public YouTube video: not yet available
 - `/feedback` Session ID: not yet generated

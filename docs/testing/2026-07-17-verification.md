@@ -59,7 +59,8 @@ This record does **not** claim a successful live GPT-5.6 response. Live verifica
 - On 2026-07-18, the account-level `workers.dev` subdomain was renamed to `alexliluz`; Cloudflare API readback confirmed the new subdomain and that the existing `stillmeaning` Worker route remains enabled. The Worker identity and deployment were not recreated.
 - A 2026-07-18 terminal HTTPS check of the new hostname from the development network timed out after 15 seconds with HTTP status `000`. Follow-up DNS-over-HTTPS checks were also reset or returned no A records from the shell environment.
 - A separate Codex in-app browser successfully navigated to the public URL and read the page title `StillMeaning — Reduce motion, not meaning`, confirming that the deployed hostname serves the application. Its DOM-control channel timed out before an analysis button could be triggered, so this does not establish a live GPT-5.6 success response.
-- Worker startup time reported at deployment: 30 ms
+- The 30-second timeout release was deployed successfully on 2026-07-18 as Cloudflare Worker version `99624c30-0d0e-4971-94ae-13d67eee4bd2`.
+- Worker startup time reported for that deployment: 26 ms
 - `OPENAI_API_KEY` was confirmed again on 2026-07-18 as an existing Cloudflare `secret_text` binding and was reused; the value was never printed or committed.
 - The deployed Secret Change version is receiving 100% of Worker traffic according to Wrangler.
 - Three known-example API requests returned the expected labeled fallback in a local Workers preview; arbitrary source without a key returned the expected 503.
