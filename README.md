@@ -160,6 +160,9 @@ Before the final Devpost submission, run `/feedback` in the primary Codex sessio
 - [Meaning-preservation boundary](docs/decisions/0001-meaning-preservation-boundary.md)
 - [Generated-code safety boundary](docs/decisions/0002-generated-code-safety.md)
 - [Approved workbench concept](docs/design/stillmeaning-workbench-concept.png)
+- [Devpost Project Story draft](docs/submission/devpost-project-story.md)
+- [Under-three-minute demo video script](docs/submission/demo-video-script.md)
+- [Devpost readiness audit](docs/submission/readiness-audit.md)
 
 ## License
 
