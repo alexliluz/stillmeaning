@@ -192,7 +192,7 @@ export const motionExamples: readonly MotionExample[] = [
   },
   {
     id: "success-save",
-    title: "Saved with confidence",
+    title: "Save confirmation",
     description: "A bouncing checkmark confirms that a draft was saved.",
     category: "Success & failure feedback",
     originalCode: `<div class="save-result">
@@ -260,7 +260,7 @@ export const motionExamples: readonly MotionExample[] = [
   },
   {
     id: "hierarchy-panel",
-    title: "Project detail panel",
+    title: "Panel hierarchy",
     description: "A large sliding panel communicates navigation into a deeper level.",
     category: "Hierarchy & focus",
     originalCode: `<button type="button" id="open-project">Open project details</button>

@@ -19,7 +19,7 @@ describe("motionExamples", () => {
   });
 
   it("looks up known examples and returns nothing for unknown ids", () => {
-    expect(getMotionExample("success-save")?.title).toBe("Saved with confidence");
+    expect(getMotionExample("success-save")?.title).toBe("Save confirmation");
     expect(getMotionExample("missing")).toBeUndefined();
     expect(getFallbackAnalysis("progress-upload")?.animationId).toBe("progress-upload");
     expect(getFallbackAnalysis("missing")).toBeUndefined();

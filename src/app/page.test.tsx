@@ -7,8 +7,9 @@ describe("Home", () => {
   it("states the product promise", () => {
     render(<Home />);
 
+    expect(screen.getByText("Reduce motion, not meaning.")).toBeVisible();
     expect(
-      screen.getByRole("heading", { name: "Reduce motion, not meaning." }),
+      screen.getByRole("heading", { name: "Upload progress", level: 1 }),
     ).toBeInTheDocument();
   });
 });
