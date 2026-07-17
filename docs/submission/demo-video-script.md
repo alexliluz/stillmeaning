@@ -71,6 +71,6 @@ The public video must be no longer than three minutes. Record at 1440×1000 or a
 
 StillMeaning is an AI-assisted motion accessibility workbench built for OpenAI Build Week 2026. It uses GPT-5.6 to analyze the meaning carried by web animation, assess motion risk, generate safer alternatives, and return structured meaning-preservation evidence.
 
-Demo: https://stillmeaning.stack-labs-dev.workers.dev
+Demo: https://stillmeaning.alexliluz.workers.dev
 
 Source: https://github.com/alexliluz/stillmeaning

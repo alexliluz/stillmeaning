@@ -10,7 +10,7 @@ This is a read-only audit of the live Devpost project and the official OpenAI Bu
 - Hackathon: OpenAI Build Week (`openai`)
 - Category to select: **Developer Tools**
 - Repository: https://github.com/alexliluz/stillmeaning
-- Public hosted demo: https://stillmeaning.stack-labs-dev.workers.dev
+- Public hosted demo: https://stillmeaning.alexliluz.workers.dev
 - Public YouTube video: not yet available
 - `/feedback` Session ID: not yet generated
 
@@ -37,7 +37,7 @@ Those claims must be replaced before submission. The accurate Project Story is i
 
 ## Developer-tool instructions draft
 
-StillMeaning is a responsive web application supporting current desktop and mobile browsers. Judges can use the hosted demo at `https://stillmeaning.stack-labs-dev.workers.dev` without an account. Select any of the three built-in examples—Upload progress, Save confirmation, or Panel hierarchy—to follow the deterministic golden path. Compare Original and StillMeaning Version, switch Normal/Reduced motion, review the Meaning Preserved evidence, and inspect or copy the generated code.
+StillMeaning is a responsive web application supporting current desktop and mobile browsers. Judges can use the hosted demo at `https://stillmeaning.alexliluz.workers.dev` without an account. Select any of the three built-in examples—Upload progress, Save confirmation, or Panel hierarchy—to follow the deterministic golden path. Compare Original and StillMeaning Version, switch Normal/Reduced motion, review the Meaning Preserved evidence, and inspect or copy the generated code.
 
 To run locally: install Node.js 24+ and pnpm 11.9+, clone `https://github.com/alexliluz/stillmeaning.git`, run `pnpm install`, copy `.env.example` to `.env.local`, and run `pnpm dev`. The three curated cases work with a clearly labeled deterministic fallback. Live pasted-source analysis requires a server-side OpenAI Platform API key with GPT-5.6 access. Generated or pasted code is never executed.
 

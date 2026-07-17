@@ -8,7 +8,7 @@ Status: ready to paste after the hosted demo and public video URLs are available
 - **Track:** Developer Tools
 - **Elevator pitch:** Reduce motion, not meaning. StillMeaning uses GPT-5.6 and Codex to create safer web animations without losing hierarchy, progress, status, or feedback.
 - **Repository:** https://github.com/alexliluz/stillmeaning
-- **Demo URL:** https://stillmeaning.stack-labs-dev.workers.dev
+- **Demo URL:** https://stillmeaning.alexliluz.workers.dev
 - **Video URL:** `[ADD PUBLIC YOUTUBE URL]`
 - **Primary Codex Session ID:** `[RUN /feedback IN THE PRIMARY CODEX SESSION]`
 - **Supported platform:** Modern desktop and mobile web browsers
