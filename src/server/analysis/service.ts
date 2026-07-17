@@ -4,7 +4,11 @@ import {
   type AnalysisRequest,
 } from "../../domain/analysis";
 import { getFallbackAnalysis } from "../../domain/examples";
-import type { AnalysisProvider } from "./provider";
+import {
+  type AnalysisProvider,
+  OpenAIProviderError,
+  type OpenAIProviderFailureCategory,
+} from "./provider";
 
 const DEFAULT_TIMEOUT_MS = 30_000;
 
@@ -43,6 +47,25 @@ function fallbackResult(
   const analysis = fallbackFor(request);
   if (!analysis) throw new AnalysisUnavailableError();
   return { analysis, notice };
+}
+
+function providerFailureNotice(category: OpenAIProviderFailureCategory): string {
+  switch (category) {
+    case "authentication":
+      return "GPT-5.6 authentication failed. Showing clearly labeled Demo data.";
+    case "quota":
+      return "GPT-5.6 Platform API quota is unavailable. Showing clearly labeled Demo data.";
+    case "rate-limit":
+      return "GPT-5.6 is temporarily rate limited. Showing clearly labeled Demo data.";
+    case "model-access":
+      return "The configured Platform project cannot access GPT-5.6. Showing clearly labeled Demo data.";
+    case "request":
+      return "GPT-5.6 rejected the analysis request. Showing clearly labeled Demo data.";
+    case "network":
+      return "GPT-5.6 could not be reached. Showing clearly labeled Demo data.";
+    case "unknown":
+      return "GPT-5.6 analysis was unavailable. Showing clearly labeled Demo data.";
+  }
 }
 
 export async function analyzeMotion(
@@ -89,6 +112,9 @@ export async function analyzeMotion(
         request,
         "GPT-5.6 analysis timed out. Showing clearly labeled Demo data.",
       );
+    }
+    if (error instanceof OpenAIProviderError) {
+      return fallbackResult(request, providerFailureNotice(error.category));
     }
     return fallbackResult(
       request,

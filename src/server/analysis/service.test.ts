@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { getFallbackAnalysis } from "../../domain/examples";
-import type { AnalysisProvider } from "./provider";
+import { type AnalysisProvider, OpenAIProviderError } from "./provider";
 import { AnalysisUnavailableError, analyzeMotion } from "./service";
 
 function progressAnalysis() {
@@ -71,6 +71,25 @@ describe("analyzeMotion", () => {
 
     expect(result.analysis.source).toBe("demo-fallback");
     expect(result.notice).toMatch(/timed out/i);
+  });
+
+  it("turns quota failures into actionable fallback copy without leaking details", async () => {
+    const provider: AnalysisProvider = {
+      analyze: vi
+        .fn()
+        .mockRejectedValue(
+          new OpenAIProviderError("quota", new Error("sensitive provider detail")),
+        ),
+    };
+
+    const result = await analyzeMotion(
+      { exampleId: "progress-upload" },
+      { apiKey: "test-only", provider, timeoutMs: 50 },
+    );
+
+    expect(result.analysis.source).toBe("demo-fallback");
+    expect(result.notice).toMatch(/Platform API quota/i);
+    expect(result.notice).not.toContain("sensitive");
   });
 
   it("allows a valid structured response that takes 15 seconds by default", async () => {

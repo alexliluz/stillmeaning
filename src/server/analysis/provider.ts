@@ -35,6 +35,26 @@ interface AnalysisFailureDiagnostic {
   status?: number;
   code?: string;
   type?: string;
+  category: OpenAIProviderFailureCategory;
+}
+
+export type OpenAIProviderFailureCategory =
+  | "authentication"
+  | "quota"
+  | "rate-limit"
+  | "model-access"
+  | "request"
+  | "network"
+  | "unknown";
+
+export class OpenAIProviderError extends Error {
+  readonly category: OpenAIProviderFailureCategory;
+
+  constructor(category: OpenAIProviderFailureCategory, cause: unknown) {
+    super("OpenAI analysis request failed.", { cause });
+    this.name = "OpenAIProviderError";
+    this.category = category;
+  }
 }
 
 function safeString(value: unknown): string | undefined {
@@ -51,14 +71,41 @@ function failureDiagnostic(error: unknown): AnalysisFailureDiagnostic {
     typeof record?.status === "number" && Number.isInteger(record.status)
       ? record.status
       : undefined;
+  const code = safeString(record?.code);
+  const type = safeString(record?.type);
+  const category = failureCategory({ name, status, code, type });
 
   return {
     event: "openai_analysis_failed",
     name,
     ...(status === undefined ? {} : { status }),
-    ...(safeString(record?.code) ? { code: safeString(record?.code) } : {}),
-    ...(safeString(record?.type) ? { type: safeString(record?.type) } : {}),
+    ...(code ? { code } : {}),
+    ...(type ? { type } : {}),
+    category,
   };
+}
+
+function failureCategory(
+  diagnostic: Pick<AnalysisFailureDiagnostic, "name" | "status" | "code" | "type">,
+): OpenAIProviderFailureCategory {
+  const { name, status, code, type } = diagnostic;
+  if (code === "insufficient_quota" || type === "insufficient_quota") {
+    return "quota";
+  }
+  if (status === 401 || code === "invalid_api_key") return "authentication";
+  if (status === 403 || status === 404 || code === "model_not_found") {
+    return "model-access";
+  }
+  if (status === 429) return "rate-limit";
+  if (status === 400 || status === 422) return "request";
+  if (
+    name === "APIConnectionError" ||
+    name === "FetchError" ||
+    name === "TypeError"
+  ) {
+    return "network";
+  }
+  return "unknown";
 }
 
 function reportFailureToConsole(diagnostic: AnalysisFailureDiagnostic): void {
@@ -100,8 +147,9 @@ export class OpenAIAnalysisProvider implements AnalysisProvider {
         { signal },
       );
     } catch (error) {
-      this.reportFailure(failureDiagnostic(error));
-      throw error;
+      const diagnostic = failureDiagnostic(error);
+      this.reportFailure(diagnostic);
+      throw new OpenAIProviderError(diagnostic.category, error);
     }
 
     if (!response.output_parsed) {

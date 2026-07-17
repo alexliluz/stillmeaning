@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { getFallbackAnalysis } from "../../domain/examples";
-import { OpenAIAnalysisProvider } from "./provider";
+import { OpenAIAnalysisProvider, OpenAIProviderError } from "./provider";
 
 describe("OpenAIAnalysisProvider", () => {
   it("uses the Responses API with a strict text format and abort signal", async () => {
@@ -56,14 +56,20 @@ describe("OpenAIAnalysisProvider", () => {
 
     await expect(
       provider.analyze({ exampleId: "progress-upload" }, new AbortController().signal),
-    ).rejects.toBe(apiError);
+    ).rejects.toMatchObject({
+      name: "OpenAIProviderError",
+      category: "quota",
+      cause: apiError,
+    });
     expect(reportFailure).toHaveBeenCalledWith({
       event: "openai_analysis_failed",
       name: "Error",
       status: 429,
       code: "insufficient_quota",
       type: "insufficient_quota",
+      category: "quota",
     });
     expect(JSON.stringify(reportFailure.mock.calls)).not.toContain("sensitive");
+    expect(OpenAIProviderError).toBeTypeOf("function");
   });
 });
