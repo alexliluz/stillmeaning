@@ -165,7 +165,7 @@ The deployment command preserves dashboard variables and secrets. `.open-next`, 
 
 ## Verification
 
-The current release passes lint, strict type checking, 33 Vitest tests, a production build, and 8 Playwright tests across desktop and mobile Chromium. The same 8 browser tests pass against a local Cloudflare `workerd` preview. The browser suite covers all three cases, focus movement, keyboard order, clipboard feedback, custom-source bounds, and system reduced-motion behavior.
+The current release passes lint, strict type checking, 36 Vitest tests, a production build, and 8 Playwright tests across desktop and mobile Chromium. The same 8 browser tests pass against a local Cloudflare `workerd` preview. The browser suite covers all three cases, focus movement, keyboard order, clipboard feedback, custom-source bounds, and system reduced-motion behavior.
 
 See [the verification record](docs/testing/2026-07-17-verification.md) for exact results and the honest live-API limitation observed in this development environment.
 
