@@ -108,7 +108,7 @@ The next version would add AST-based animation extraction, repository and design
 - [ ] Verify one successful live GPT-5.6 response from the deployed environment.
 - [x] Render and verify a 2:22 English MP4 using the current Meaning Loss Reveal experience.
 - [ ] Upload the verified MP4 publicly to YouTube and add the URL.
-- [ ] Confirm Devpost finished processing the refreshed 3:2 thumbnail; manually add the two refreshed product screenshots to the gallery.
+- [ ] Confirm Devpost finished processing the refreshed 3:2 thumbnail accepted by its direct upload API; manually add the two refreshed product screenshots to the gallery.
 - [x] Replace the inaccurate draft description with the repository-backed Project Story and verified Built with tags.
 - [x] Add the public GitHub repository URL and hosted demo link.
 - [x] Run the available Devpost plugin submission-requirements audit without invoking submission.

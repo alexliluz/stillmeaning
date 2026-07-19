@@ -80,6 +80,8 @@ Verification commands: pnpm lint, pnpm typecheck, pnpm test, pnpm build, and pnp
 - Gallery image 1: [assets/stillmeaning-save-confirmation.jpg](assets/stillmeaning-save-confirmation.jpg), 1440×960
 - Gallery image 2: [assets/stillmeaning-panel-hierarchy.jpg](assets/stillmeaning-panel-hierarchy.jpg), 1440×960
 
+Devpost accepted a 600×400 3:2 derivative of the thumbnail through its direct upload API and returned a production CDN URL with background processing active. Confirm the rendered result in the editor before final submission; the two gallery images are not yet uploaded.
+
 ## Final human confirmations
 
 Before any final Submit action:
