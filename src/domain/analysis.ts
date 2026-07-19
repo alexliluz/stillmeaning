@@ -32,24 +32,87 @@ export const validationCheckSchema = z
   })
   .strict();
 
-export const analysisSourceSchema = z.enum(["gpt-5.6", "demo-fallback"]);
+export const semanticImpactSchema = z.enum([
+  "lost",
+  "ambiguous",
+  "retained",
+]);
 
-export const analysisSchema = z
+export const semanticTraceSchema = z
   .object({
-    animationId: z.string().trim().min(1).max(120),
-    detectedTechnique: detectedTechniqueSchema,
-    semanticRole: semanticRoleSchema,
-    motionRisk: motionRiskSchema,
-    riskReason: conciseText,
-    originalBehavior: conciseText,
-    proposedAlternative: conciseText,
-    preservedMeaning: z.array(z.string().trim().min(1).max(240)).min(1).max(8),
-    confidence: z.number().min(0).max(1),
-    generatedCode: z.string().trim().min(1).max(50_000),
-    validationChecks: z.array(validationCheckSchema).min(1).max(12),
-    source: analysisSourceSchema,
+    id: z.string().trim().min(1).max(80).regex(/^[a-z0-9-]+$/),
+    meaning: z.string().trim().min(1).max(240),
+    originalSignal: conciseText,
+    removalEffect: conciseText,
+    impact: semanticImpactSchema,
+    replacementSignal: conciseText,
+    validationCheckId: z
+      .string()
+      .trim()
+      .min(1)
+      .max(80)
+      .regex(/^[a-z0-9-]+$/),
   })
   .strict();
+
+export const analysisSourceSchema = z.enum(["gpt-5.6", "demo-fallback"]);
+
+const analysisShape = {
+  animationId: z.string().trim().min(1).max(120),
+  detectedTechnique: detectedTechniqueSchema,
+  semanticRole: semanticRoleSchema,
+  motionRisk: motionRiskSchema,
+  riskReason: conciseText,
+  originalBehavior: conciseText,
+  proposedAlternative: conciseText,
+  preservedMeaning: z.array(z.string().trim().min(1).max(240)).min(1).max(8),
+  semanticTrace: z.array(semanticTraceSchema).min(1).max(8),
+  confidence: z.number().min(0).max(1),
+  generatedCode: z.string().trim().min(1).max(50_000),
+  validationChecks: z.array(validationCheckSchema).min(1).max(12),
+};
+
+interface SemanticReferenceValue {
+  semanticTrace: Array<{ id: string; validationCheckId: string }>;
+  validationChecks: Array<{ id: string }>;
+}
+
+function validateSemanticReferences(
+  value: SemanticReferenceValue,
+  context: z.RefinementCtx,
+) {
+  const checkIds = new Set(value.validationChecks.map((check) => check.id));
+  const traceIds = new Set<string>();
+
+  value.semanticTrace.forEach((trace, index) => {
+    if (traceIds.has(trace.id)) {
+      context.addIssue({
+        code: "custom",
+        path: ["semanticTrace", index, "id"],
+        message: "Semantic trace ids must be unique.",
+      });
+    }
+    traceIds.add(trace.id);
+
+    if (!checkIds.has(trace.validationCheckId)) {
+      context.addIssue({
+        code: "custom",
+        path: ["semanticTrace", index, "validationCheckId"],
+        message: "Semantic trace must reference an existing validation check.",
+      });
+    }
+  });
+}
+
+export const modelAnalysisSchema = z
+  .object(analysisShape)
+  .strict()
+  .superRefine(validateSemanticReferences);
+
+export const analysisSchema = z
+  .object({ ...analysisShape, source: analysisSourceSchema })
+  .strict()
+  .superRefine(validateSemanticReferences);
 
 const exampleAnalysisRequestSchema = z
   .object({
@@ -75,5 +138,7 @@ export type AnalysisRequest = z.infer<typeof analysisRequestSchema>;
 export type AnalysisSource = z.infer<typeof analysisSourceSchema>;
 export type DetectedTechnique = z.infer<typeof detectedTechniqueSchema>;
 export type MotionRisk = z.infer<typeof motionRiskSchema>;
+export type SemanticImpact = z.infer<typeof semanticImpactSchema>;
 export type SemanticRole = z.infer<typeof semanticRoleSchema>;
+export type SemanticTrace = z.infer<typeof semanticTraceSchema>;
 export type ValidationCheck = z.infer<typeof validationCheckSchema>;

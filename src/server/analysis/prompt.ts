@@ -16,7 +16,10 @@ Product requirements:
 - Keep accessible names, state text, ARIA semantics, keyboard behavior, and focus movement when relevant.
 - generatedCode must be a self-contained replacement excerpt, not prose or Markdown fences.
 - validationChecks must cite concrete evidence from generatedCode.
-- Do not claim WCAG certification; report evidence and uncertainty.`;
+- For every meaning carried by motion, provide one semanticTrace item.
+- In each semanticTrace item, explain the original signal, what becomes lost or ambiguous if motion is only disabled, the non-motion replacement, and the validationCheckId that supports that replacement.
+- Use retained only when the meaning remains explicit without adding a replacement.
+- Never claim that validation checks prove complete accessibility or WCAG certification; report evidence and uncertainty.`;
 
 export function buildAnalysisPrompt(request: AnalysisRequest): string {
   const example =

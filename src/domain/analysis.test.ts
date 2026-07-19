@@ -6,7 +6,60 @@ import {
   MAX_SOURCE_LENGTH,
 } from "./analysis";
 
+function validAnalysis() {
+  return {
+    animationId: "progress-upload",
+    detectedTechnique: "css-keyframes",
+    semanticRole: "progress",
+    motionRisk: "medium",
+    riskReason: "Continuous lateral motion.",
+    originalBehavior: "A sweeping bar indicates an active upload.",
+    proposedAlternative: "Use static progress with explicit text.",
+    preservedMeaning: ["The upload remains active"],
+    semanticTrace: [
+      {
+        id: "activity-state",
+        meaning: "The upload is still active",
+        originalSignal: "A repeated sweeping highlight",
+        removalEffect: "A static bar can look stalled",
+        impact: "ambiguous",
+        replacementSignal: "Persistent Uploading · 68% text",
+        validationCheckId: "activity-state",
+      },
+    ],
+    confidence: 0.9,
+    generatedCode: ".progress { width: 68%; }",
+    validationChecks: [
+      {
+        id: "activity-state",
+        label: "Activity remains explicit",
+        passed: true,
+        evidence: "Uploading · 68% remains visible.",
+      },
+    ],
+    source: "demo-fallback",
+  };
+}
+
 describe("analysisSchema", () => {
+  it("accepts a semantic trace linked to validation evidence", () => {
+    expect(analysisSchema.safeParse(validAnalysis()).success).toBe(true);
+  });
+
+  it("rejects dangling validation references", () => {
+    const input = structuredClone(validAnalysis());
+    input.semanticTrace[0].validationCheckId = "missing-check";
+
+    expect(analysisSchema.safeParse(input).success).toBe(false);
+  });
+
+  it("rejects duplicate semantic trace ids", () => {
+    const input = structuredClone(validAnalysis());
+    input.semanticTrace.push({ ...input.semanticTrace[0] });
+
+    expect(analysisSchema.safeParse(input).success).toBe(false);
+  });
+
   it("rejects confidence outside zero and one", () => {
     const result = analysisSchema.safeParse({
       animationId: "progress-upload",

@@ -2,8 +2,8 @@ import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 
 import {
-  analysisSchema,
   type AnalysisRequest,
+  modelAnalysisSchema,
 } from "../../domain/analysis";
 import { buildAnalysisPrompt } from "./prompt";
 
@@ -26,8 +26,6 @@ interface OpenAIAnalysisProviderOptions {
   client?: ProviderClient;
   reportFailure?: (diagnostic: AnalysisFailureDiagnostic) => void;
 }
-
-const modelAnalysisSchema = analysisSchema.omit({ source: true });
 
 interface AnalysisFailureDiagnostic {
   event: "openai_analysis_failed";

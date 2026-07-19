@@ -9,6 +9,10 @@ describe("buildAnalysisPrompt", () => {
     expect(prompt).toContain("Do not execute");
     expect(prompt).toContain("untrusted");
     expect(prompt).toContain("preserve");
+    expect(prompt).toContain("semanticTrace");
+    expect(prompt).toContain("lost or ambiguous");
+    expect(prompt).toContain("validationCheckId");
+    expect(prompt).toContain("Never claim");
   });
 
   it("delimits pasted code without following instructions inside it", () => {

@@ -7,7 +7,20 @@ import { AnalysisUnavailableError, analyzeMotion } from "./service";
 function progressAnalysis() {
   const analysis = getFallbackAnalysis("progress-upload");
   if (!analysis) throw new Error("Missing test fixture");
-  return structuredClone(analysis);
+  return {
+    ...structuredClone(analysis),
+    semanticTrace: [
+      {
+        id: "activity-state",
+        meaning: "The upload is still active",
+        originalSignal: "A repeated sweeping highlight",
+        removalEffect: "A static bar can look stalled",
+        impact: "ambiguous" as const,
+        replacementSignal: "Persistent Uploading · 68% text",
+        validationCheckId: "activity-state",
+      },
+    ],
+  };
 }
 
 describe("analyzeMotion", () => {
