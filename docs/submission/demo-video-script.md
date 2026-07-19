@@ -1,71 +1,70 @@
-# Demo video script — target 2:40
+# Demo video script — rendered 2:22
 
-The public video must be no longer than three minutes. Record at 1440×1000 or another 16:9-friendly desktop size, keep browser zoom at 100%, and close unrelated tabs and notifications.
+The final local render is 142.016 seconds, below Devpost's three-minute limit. It is 1920×1080 at 30 fps with English narration and real StillMeaning product captures.
 
-## 0:00–0:20 — Problem and promise
+## 0:00–0:22 — Problem and promise
 
-**Screen:** StillMeaning header and three examples.
-
-**Voiceover:**
-
-> Animation is information. It shows progress, confirms an outcome, or explains where focus moved. But reduced-motion implementations often delete the animation—and the information with it. StillMeaning asks one question: what disappears when motion disappears? Then it reduces the motion, not the meaning.
-
-## 0:20–0:55 — Upload progress and the counterfactual
-
-**Screen:** Select Upload progress. Show Original, click **Why not just turn motion off?**, pause on Motion Removed Only and Meaning at Risk, then click **Restore meaning with StillMeaning**.
+**Screen:** StillMeaning workbench with the Upload progress counterfactual visible. Title: **Animation is information.**
 
 **Voiceover:**
 
-> This continuous shimmer says the upload is still active. If we merely turn it off, the bar becomes static: is it progressing or stalled, and what is the exact value? StillMeaning traces that ambiguity, then replaces the moving cue with visible status text, a numeric value, and real progressbar semantics.
+> Animation is information. It shows progress, confirms an outcome, or explains where focus moved. But reduced-motion implementations often delete the animation, and the information with it. StillMeaning asks one question: what disappears when motion disappears? Then it reduces the motion, not the meaning.
 
-## 0:55–1:20 — Success feedback
+## 0:22–0:55 — Upload progress and the counterfactual
 
-**Screen:** Select Save confirmation, reveal Motion Removed Only, then restore StillMeaning.
+**Screen:** Motion Removed Only and Meaning at Risk, followed by the restored StillMeaning Version and semantic receipt.
 
 **Voiceover:**
 
-> Here, scale, rotation, and path drawing are the success message. Turning them off leaves only an unlabeled icon. StillMeaning makes the result persistent and explicit with Changes saved text, synchronization detail, and a polite status announcement—without relying on motion or color alone.
+> This continuous shimmer says the upload is still active. If we merely turn it off, the bar becomes static. Is it progressing or stalled, and what is the exact value? StillMeaning traces that ambiguity, then replaces the moving cue with visible status text, a numeric value, and real progress-bar semantics.
 
-## 1:20–1:47 — Hierarchy and focus
+## 0:55–1:18 — Success feedback
 
-**Screen:** Select Panel hierarchy, activate the Original panel, reveal the immediate-swap counterfactual, then restore StillMeaning and activate its panel.
+**Screen:** Save confirmation with the unlabeled-icon counterfactual and lost/ambiguous outcome evidence.
+
+**Voiceover:**
+
+> Here, scale, rotation, and path drawing are the success message. Turning them off leaves only an unlabeled icon. StillMeaning makes the result persistent and explicit with Changes saved text, synchronization detail, and a polite status announcement, without relying on motion or color alone.
+
+## 1:18–1:40 — Hierarchy and focus
+
+**Screen:** Panel hierarchy with an explicit destination, logical keyboard focus, short fade, and preserved-meaning evidence.
 
 **Voiceover:**
 
 > This large slide communicates movement into a deeper level. Removing it without a replacement creates an unexplained content swap and leaves keyboard focus behind. StillMeaning adds explicit hierarchy, names the destination, and moves focus logically while replacing the travel with only a short fade.
 
-## 1:47–2:10 — Code transformation
+## 1:40–1:59 — Code transformation
 
-**Screen:** Scroll to the code section. Toggle the diff, highlight removed and added lines, then use Copy generated code.
+**Screen:** Inspectable before-and-after diff, generated implementation, and safe execution boundary.
 
 **Voiceover:**
 
 > StillMeaning does not stop at advice. It generates an inspectable implementation, shows the exact before-and-after diff, explains the transformation, and lets a developer copy the result. Generated code is displayed as untrusted text and is never executed inside the workbench.
 
-## 2:10–2:32 — GPT-5.6 and safety
+## 1:59–2:14 — GPT-5.6 and guardrails
 
-**Screen:** Show provenance badge and, if live access is working, paste a short custom animation and run analysis. Otherwise keep the curated demo and do not imply a live call.
-
-**Voiceover:**
-
-> GPT-5.6 performs the core reasoning: it identifies each motion-carried signal, predicts what becomes lost or ambiguous, selects replacement cues, generates code, and links each cue to structured validation evidence. The server uses strict schema validation, bounded input, a timeout, and a server-only key. Provenance always distinguishes live GPT-5.6 from the clearly labeled demo fallback.
-
-## 2:32–2:40 — Codex and close
-
-**Screen:** Return to the full workbench or briefly show the GitHub history.
+**Screen:** Signal, Loss, Replacement, and Evidence cards. The source note explicitly states that the recorded path shows the labeled demo fallback.
 
 **Voiceover:**
 
-> Codex helped audit, design, implement, test, debug, and document the project in one primary development session. StillMeaning: reduce motion, not meaning.
+> GPT-5.6 performs the core reasoning. It identifies each motion-carried signal, predicts what becomes lost or ambiguous, selects replacement cues, generates code, and links each cue to structured validation evidence. The server uses strict schema validation, bounded input, a timeout, and a server-only key. Provenance always distinguishes live GPT-5.6 from the clearly labeled demo fallback shown here.
+
+## 2:14–2:22 — Codex and close
+
+**Screen:** **Built with GPT-5.6 + Codex**, repository URL, and the final principle.
+
+**Voiceover:**
+
+> Codex helped audit, design, implement, test, debug, deploy, and document the project in one primary development session. StillMeaning: reduce motion, not meaning.
 
 ## Recording truthfulness checks
 
-- Do not say a response is live unless the UI visibly shows `Live · GPT-5.6` during that take.
-- Do not claim WCAG certification; say “review evidence” or “meaning-preservation checks.”
+- The rendered workbench visibly shows `Demo fallback`; it does not imply a successful live model call.
+- Do not claim WCAG certification; describe bounded meaning-preservation evidence and tested contrast.
 - Do not claim user metrics, performance gains, or production adoption.
-- Keep the fallback badge visible when using curated fixture data.
-- Show the public demo URL and repository URL in the video description.
-- Mention Codex and GPT-5.6 verbally, not only in captions.
+- The narration mentions Codex and GPT-5.6 verbally, not only in captions.
+- Add the public demo URL and repository URL to the YouTube description.
 
 ## Suggested video description
 

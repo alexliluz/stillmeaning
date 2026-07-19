@@ -1,6 +1,6 @@
-# Rendered demo video draft — 2026-07-18
+# Rendered demo video — 2026-07-19
 
-The local submission-video draft is ready for review and YouTube upload. It was rendered from real StillMeaning screenshots with a system English voice and does not fabricate a live GPT-5.6 response.
+The final local submission video is ready for a public YouTube upload. It uses real StillMeaning screenshots, an English system voice, and the current Meaning Loss Reveal experience. It does not fabricate a live GPT-5.6 response; the recorded workbench visibly retains `Demo fallback` provenance.
 
 ## Artifact
 
@@ -8,30 +8,28 @@ The local submission-video draft is ready for review and YouTube upload. It was 
 - Duration: 142.016 seconds (2:22)
 - Video: H.264, 1920×1080, 30 fps
 - Audio: AAC, 48 kHz, stereo
-- Size: 16,230,263 bytes (15.5 MB)
-- SHA-256: `956ce349075e2c84db7a8255d951f42a6c226334e93d034dbe522e2b9bcbde19`
-- Audio level: -19.0 dB mean, -4.5 dB peak
-- Automated media checks found no black interval longer than one second and no silence interval longer than two seconds.
-- HyperFrames check: zero lint, runtime, layout, and motion issues; 23/23 text checks passed WCAG AA.
+- Size: 15,442,869 bytes (14.7 MiB)
+- SHA-256: `e3f21bd23ff3378476924de9315af09ed65f6bdae85b33e15f6db9d24b4c1a82`
+- Audio level: -19.0 dB mean, -4.7 dB peak
+- FFmpeg `blackdetect` found no black interval longer than one second.
+- FFmpeg `silencedetect` found no silence interval longer than two seconds at -45 dB.
+- HyperFrames check: zero lint, runtime, layout, and motion issues; 20/20 text checks passed WCAG AA contrast.
+- Final frames at 5, 40, 85, 125, and 137 seconds were manually inspected for composition, legibility, accurate fallback provenance, and scene continuity.
 
 The MP4 remains in Git-ignored `.tmp` to avoid adding a binary video to repository history. Upload it as a public YouTube video, then add the YouTube URL to Devpost and this repository's submission documents.
 
-## Narration used in the rendered draft
+## Narration used in the final render
 
-Web animation often carries meaning. It shows progress, confirms an outcome, and explains where focus moved. But reduced-motion implementations often delete the animation and the information with it.
+Animation is information. It shows progress, confirms an outcome, or explains where focus moved. But reduced-motion implementations often delete the animation, and the information with it. StillMeaning asks one question: what disappears when motion disappears? Then it reduces the motion, not the meaning.
 
-StillMeaning is a developer tool built around one principle: reduce motion, not meaning.
+This continuous shimmer says the upload is still active. If we merely turn it off, the bar becomes static. Is it progressing or stalled, and what is the exact value? StillMeaning traces that ambiguity, then replaces the moving cue with visible status text, a numeric value, and real progress-bar semantics.
 
-In this upload example, StillMeaning identifies a continuous shimmer. The semantic role is progress, while the repeated lateral movement creates motion risk. The alternative removes the shimmer but keeps a numeric value, visible status text, and a real progress-bar state. The evidence panel shows exactly which meaning remains available.
+Here, scale, rotation, and path drawing are the success message. Turning them off leaves only an unlabeled icon. StillMeaning makes the result persistent and explicit with Changes saved text, synchronization detail, and a polite status announcement, without relying on motion or color alone.
 
-The save example combines scale, rotation, and path drawing to communicate success. Simply disabling those effects could make the outcome easier to miss. StillMeaning replaces the compound motion with persistent outcome text, a checkmark, and a polite status announcement, so feedback does not depend on movement or color alone.
+This large slide communicates movement into a deeper level. Removing it without a replacement creates an unexplained content swap and leaves keyboard focus behind. StillMeaning adds explicit hierarchy, names the destination, and moves focus logically while replacing the travel with only a short fade.
 
-The panel example originally travels across most of the viewport to communicate hierarchy. In reduced-motion mode, the safer version uses a short opacity change, keeps the destination named, and moves keyboard focus logically. The hierarchy remains understandable without the large spatial transition.
+StillMeaning does not stop at advice. It generates an inspectable implementation, shows the exact before-and-after diff, explains the transformation, and lets a developer copy the result. Generated code is displayed as untrusted text and is never executed inside the workbench.
 
-StillMeaning does not stop at advice. It shows an inspectable before-and-after code diff, generates a replacement implementation, and lets developers copy the result. Generated code stays untrusted text and is never executed inside the workbench.
+GPT-5.6 performs the core reasoning. It identifies each motion-carried signal, predicts what becomes lost or ambiguous, selects replacement cues, generates code, and links each cue to structured validation evidence. The server uses strict schema validation, bounded input, a timeout, and a server-only key. Provenance always distinguishes live GPT-5.6 from the clearly labeled demo fallback shown here.
 
-GPT-5.6 performs the core reasoning: semantic classification, motion-risk analysis, strategy selection, code generation, and structured validation evidence. The server uses strict schema validation, bounded input and output, a thirty-second timeout, store false, and a server-only API key. Provenance always states whether a result came from live GPT-5.6 or the clearly labeled demo fallback shown here.
-
-Codex helped audit the repository, research adjacent tools, shape the architecture, implement the product test-first, debug deployment, review accessibility and security, and prepare the submission. The verified suite includes strict type checking, thirty-six unit and component tests, and eight desktop and mobile browser tests.
-
-StillMeaning. Reduce motion, not meaning.
+Codex helped audit, design, implement, test, debug, deploy, and document the project in one primary development session. StillMeaning: reduce motion, not meaning.

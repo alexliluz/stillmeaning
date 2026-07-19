@@ -1,6 +1,6 @@
 # Devpost submission draft
 
-Status: ready to paste after the hosted demo and public video URLs are available.
+Status: Project Story and Built with tags are live on the Devpost draft; the public video URL, gallery upload, live-model proof, and Session ID remain.
 
 ## Project metadata
 
@@ -106,8 +106,9 @@ The next version would add AST-based animation extraction, repository and design
 - [x] Deploy a public Cloudflare Workers demo and add its URL.
 - [x] Verify that `stillmeaning.alexliluz.workers.dev` loads publicly and returns the StillMeaning page title; no custom domain is planned for this personal project.
 - [ ] Verify one successful live GPT-5.6 response from the deployed environment.
-- [ ] Review the rendered 2:22 local MP4 draft, upload it publicly to YouTube, and add the URL.
-- [ ] The 3:2 thumbnail is uploaded; manually add the two prepared product screenshots to the Devpost gallery.
+- [x] Render and verify a 2:22 English MP4 using the current Meaning Loss Reveal experience.
+- [ ] Upload the verified MP4 publicly to YouTube and add the URL.
+- [ ] Confirm Devpost finished processing the refreshed 3:2 thumbnail; manually add the two refreshed product screenshots to the gallery.
 - [x] Replace the inaccurate draft description with the repository-backed Project Story and verified Built with tags.
 - [x] Add the public GitHub repository URL and hosted demo link.
 - [x] Run the available Devpost plugin submission-requirements audit without invoking submission.

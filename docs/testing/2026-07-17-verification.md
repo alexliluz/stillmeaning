@@ -78,3 +78,14 @@ This record does **not** claim a successful live GPT-5.6 response. The remaining
 - A pnpm workspace override pins the Next.js PostCSS transitive dependency to patched version 8.5.19.
 - Repository scans found only the placeholder `OPENAI_API_KEY=` in `.env.example`.
 - No generated Session ID, user metric, performance metric, or live-model result has been fabricated.
+
+## Submission asset verification — 2026-07-19
+
+- Captured a new 1440×960 3:2 thumbnail and two 1440×960 gallery images from the real local Meaning Loss Reveal workbench.
+- All three images retain visible `Demo fallback` provenance and were manually inspected after export.
+- Rendered the final English demo video from real product screenshots at 1920×1080, 30 fps, with a 142.016-second runtime.
+- HyperFrames reported zero lint, runtime, layout, and motion issues; all 20 detected text checks passed WCAG AA contrast.
+- FFmpeg found no black interval longer than one second and no silence interval longer than two seconds at -45 dB.
+- Final audio measured -19.0 dB mean and -4.7 dB peak; five representative frames were manually reviewed.
+- Final local MP4 SHA-256: `e3f21bd23ff3378476924de9315af09ed65f6bdae85b33e15f6db9d24b4c1a82`.
+- The video remains in Git-ignored `.tmp`; no public YouTube URL is claimed yet.

@@ -1,4 +1,4 @@
-# Submission readiness audit — 2026-07-17
+# Submission readiness audit — updated 2026-07-19
 
 This records the live Devpost project and official OpenAI Build Week submission fields. It does not authorize or record a Devpost competition submission.
 
@@ -12,9 +12,10 @@ This records the live Devpost project and official OpenAI Build Week submission 
 - Repository: https://github.com/alexliluz/stillmeaning
 - Public hosted demo: https://stillmeaning.alexliluz.workers.dev
 - Hosted release: Meaning Loss Reveal was deployed to the existing `stillmeaning` Worker on 2026-07-19 as version `24ef0b28-6e5f-467d-a32f-966f4977abb5`; no custom domain or separate Cloudflare account was created
-- Devpost Project Story, Built with tags, repository URL, and demo URL: live version 6 was updated on 2026-07-18; the repository now contains a stronger Meaning Loss Reveal draft with the verified 45-test total that still needs to be copied to Devpost
-- 3:2 thumbnail: uploaded on 2026-07-18; existing local image assets predate Meaning Loss Reveal and should be refreshed before the two gallery screenshots are uploaded
-- Demo video: the verified 2:22 local MP4 predates Meaning Loss Reveal; the updated 2:40 script is ready, but a replacement render, public YouTube upload, and URL are not yet available
+- Devpost Project Story, Built with tags, repository URL, and demo URL: live version 7 was updated on 2026-07-19 with Meaning Loss Reveal and the verified 45-test total
+- 3:2 thumbnail: a refreshed Meaning Loss Reveal thumbnail upload completed through Devpost's prepared upload endpoint on 2026-07-19; Devpost processing and public visual readback still require manual confirmation
+- Gallery: two refreshed 1440×960 product screenshots are ready locally; Devpost's available project API does not expose gallery-photo upload, so they still require manual upload
+- Demo video: a final 2:22 English MP4 using the current Meaning Loss Reveal experience is rendered and verified locally; public YouTube upload and URL remain
 - `/feedback` Session ID: not yet generated
 
 The official deadline returned by Devpost is `2026-07-22T00:00:00Z`, which is July 21 at 5:00 PM Pacific Time and July 22 at 8:00 AM China Standard Time.
@@ -49,7 +50,7 @@ To run locally: install Node.js 24+ and pnpm 11.9+, clone `https://github.com/al
 | Criterion | Current evidence | Remaining improvement |
 | --- | --- | --- |
 | Technological Implementation | Structured GPT-5.6 boundary, cross-validated semantic trace, classified safe fallback, 45 unit/component tests, 8 browser tests, meaningful Git history | Add Platform API quota, rerun the deployed smoke workflow successfully, and capture a live result |
-| Design | Coherent workbench, before/after focus, responsive and keyboard-accessible interaction; 3:2 thumbnail and two additional product screenshots prepared | Upload the prepared assets and verify their Devpost rendering |
+| Design | Coherent workbench, before/after focus, responsive and keyboard-accessible interaction; refreshed 3:2 thumbnail and two product screenshots prepared from the current experience | Confirm thumbnail processing, upload the gallery images, and verify Devpost rendering |
 | Potential Impact | Specific developer and accessibility audience, standards-backed problem, three concrete semantic roles | Keep the two-minute narrative focused on lost meaning rather than generic accessibility |
 | Quality of the Idea | Motion-semantic-first workflow differs from broad scanners and preference emulators in reviewed official materials | Avoid absolute “no competitors” claims; describe the gap as an evidence-based inference |
 
@@ -61,8 +62,8 @@ The entrant confirmed the United States as their country of residence. The Unite
 
 1. Confirm entrant type, legal age of majority, and all remaining eligibility conditions.
 2. Add OpenAI Platform API quota for the configured key, then rerun `Deployed GPT smoke` and verify at least one successful live GPT-5.6 analysis. The current independent run reached the API but correctly failed on `insufficient_quota`: https://github.com/alexliluz/stillmeaning/actions/runs/29607701319.
-3. Refresh the 3:2 thumbnail and two gallery screenshots so they show Meaning Loss Reveal, then upload and verify them manually on Devpost.
-4. Render and review the updated 2:40 script, upload the replacement as a public YouTube video, and add the URL to Devpost.
+3. Confirm the refreshed 3:2 thumbnail rendered correctly on Devpost, then upload and verify the two prepared gallery screenshots manually.
+4. Upload the verified 2:22 MP4 as a public YouTube video and add its URL to Devpost.
 5. Run `/feedback` in this primary Codex session and save the real Session ID.
 6. Manually review all fields, then perform the final Devpost submission before the deadline.
 
