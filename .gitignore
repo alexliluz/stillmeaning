@@ -2,6 +2,7 @@
 .open-next/
 .wrangler/
 .tmp/
+.worktrees/
 cloudflare-env.d.ts
 node_modules/
 coverage/
