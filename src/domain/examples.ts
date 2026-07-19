@@ -30,10 +30,63 @@ export interface MotionExample {
   description: string;
   category: string;
   originalCode: string;
+  motionRemovedCode: string;
   reducedCode: string;
   preview: PreviewMetadata;
   fallbackAnalysis: Analysis;
 }
+
+const progressMotionRemovedCode = `<div class="upload-progress" aria-label="Uploading">
+  <span class="upload-progress__fill"></span>
+</div>
+
+<style>
+  .upload-progress__fill { width: 68%; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .upload-progress::after {
+      animation: none;
+      content: none;
+    }
+
+    .upload-progress__fill { transition: none; }
+  }
+</style>`;
+
+const successMotionRemovedCode = `<div class="save-result">
+  <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 7" /></svg>
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .save-result,
+    .save-result path {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>`;
+
+const hierarchyMotionRemovedCode = `<button type="button" id="open-project">Open project details</button>
+<section id="project-panel" class="panel" hidden>
+  <h2>Project details</h2>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .panel[data-state="open"] {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  openProject.addEventListener('click', () => {
+    projectPanel.hidden = false;
+    projectPanel.dataset.state = 'open';
+  });
+</script>`;
 
 const progressReducedCode = `<div
   class="upload-progress"
@@ -87,7 +140,11 @@ const successReducedCode = `<div class="save-result" role="status" aria-live="po
 
 const hierarchyReducedCode = `<main id="workspace-shell">
   <button type="button" aria-controls="project-panel">Open project details</button>
+  <nav aria-label="Current location">
+    <span>Projects</span> / <strong>Project details</strong>
+  </nav>
   <section id="project-panel" aria-labelledby="project-panel-title" hidden>
+    <span>Deeper level</span>
     <h2 id="project-panel-title" tabindex="-1">Project details</h2>
     <p>Settings for StillMeaning.</p>
   </section>
@@ -142,6 +199,7 @@ export const motionExamples: readonly MotionExample[] = [
     to { transform: translateX(100%); }
   }
 </style>`,
+    motionRemovedCode: progressMotionRemovedCode,
     reducedCode: progressReducedCode,
     preview: {
       kind: "progress",
@@ -165,6 +223,35 @@ export const motionExamples: readonly MotionExample[] = [
         "The current completion value is 68%",
         "The progress belongs to quarterly-report.pdf",
       ],
+      semanticTrace: [
+        {
+          id: "activity-state",
+          meaning: "The upload is still active",
+          originalSignal: "A repeated sweeping highlight crosses the progress track.",
+          removalEffect: "A static bar can look stalled.",
+          impact: "ambiguous",
+          replacementSignal: "Persistent Uploading · 68% text states that work is continuing.",
+          validationCheckId: "activity-state",
+        },
+        {
+          id: "completion-value",
+          meaning: "The upload is 68% complete",
+          originalSignal: "The changing visual width suggests partial completion.",
+          removalEffect: "The precise completion value is not exposed as text or a progressbar value.",
+          impact: "ambiguous",
+          replacementSignal: "Visible 68% text matches aria-valuenow=68.",
+          validationCheckId: "progress-value",
+        },
+        {
+          id: "file-association",
+          meaning: "The progress belongs to quarterly-report.pdf",
+          originalSignal: "The moving track appears beside the file being uploaded.",
+          removalEffect: "The unlabeled visual track does not programmatically identify its file.",
+          impact: "lost",
+          replacementSignal: "The progressbar accessible label names quarterly-report.pdf.",
+          validationCheckId: "file-association",
+        },
+      ],
       confidence: 0.97,
       generatedCode: progressReducedCode,
       validationChecks: [
@@ -185,6 +272,12 @@ export const motionExamples: readonly MotionExample[] = [
           label: "Active state remains explicit",
           passed: true,
           evidence: "The persistent Uploading label replaces the infinite shimmer cue.",
+        },
+        {
+          id: "file-association",
+          label: "Progress remains associated with its file",
+          passed: true,
+          evidence: "The progressbar aria-label names quarterly-report.pdf.",
         },
       ],
       source: "demo-fallback",
@@ -211,6 +304,7 @@ export const motionExamples: readonly MotionExample[] = [
     to { stroke-dashoffset: 0; }
   }
 </style>`,
+    motionRemovedCode: successMotionRemovedCode,
     reducedCode: successReducedCode,
     preview: {
       kind: "success",
@@ -233,6 +327,35 @@ export const motionExamples: readonly MotionExample[] = [
         "The confirmation belongs to the current draft",
         "The latest synchronization time remains visible",
       ],
+      semanticTrace: [
+        {
+          id: "save-outcome",
+          meaning: "The draft was saved successfully",
+          originalSignal: "A checkmark scales, rotates, and draws itself into view.",
+          removalEffect: "An unlabeled static icon does not express the outcome to users who cannot perceive it.",
+          impact: "lost",
+          replacementSignal: "Persistent Changes saved text expresses the result without relying on motion or color.",
+          validationCheckId: "outcome-text",
+        },
+        {
+          id: "status-announcement",
+          meaning: "The result is announced when the save completes",
+          originalSignal: "The animated entrance attracts visual attention at the moment of completion.",
+          removalEffect: "Removing the entrance adds no programmatic announcement for users whose attention is elsewhere.",
+          impact: "lost",
+          replacementSignal: "A polite status region announces the completed save.",
+          validationCheckId: "status-announcement",
+        },
+        {
+          id: "sync-context",
+          meaning: "The confirmation belongs to the latest draft synchronization",
+          originalSignal: "The transient animated check appears immediately after the action.",
+          removalEffect: "A timeless icon can be mistaken for an old or generic success state.",
+          impact: "ambiguous",
+          replacementSignal: "Draft synced at 10:42 provides persistent context.",
+          validationCheckId: "sync-detail",
+        },
+      ],
       confidence: 0.95,
       generatedCode: successReducedCode,
       validationChecks: [
@@ -253,6 +376,12 @@ export const motionExamples: readonly MotionExample[] = [
           label: "Compound motion is removed",
           passed: true,
           evidence: "Reduced motion disables the scale, rotation, and path animation.",
+        },
+        {
+          id: "sync-detail",
+          label: "Synchronization context remains visible",
+          passed: true,
+          evidence: "Draft synced at 10:42 identifies the result as the latest synchronization.",
         },
       ],
       source: "demo-fallback",
@@ -282,6 +411,7 @@ export const motionExamples: readonly MotionExample[] = [
     projectPanel.dataset.state = 'open';
   });
 </script>`,
+    motionRemovedCode: hierarchyMotionRemovedCode,
     reducedCode: hierarchyReducedCode,
     preview: {
       kind: "hierarchy",
@@ -305,6 +435,26 @@ export const motionExamples: readonly MotionExample[] = [
         "Project details is the new active context",
         "Keyboard and screen-reader focus follows the context change",
       ],
+      semanticTrace: [
+        {
+          id: "depth-context",
+          meaning: "Project details is a deeper level inside Projects",
+          originalSignal: "The panel travels from right to left across most of the viewport.",
+          removalEffect: "An immediate content swap does not explain the destination's relationship to Projects.",
+          impact: "ambiguous",
+          replacementSignal: "The Projects / Project details breadcrumb and Deeper level label make the hierarchy explicit.",
+          validationCheckId: "hierarchy-context",
+        },
+        {
+          id: "focus-destination",
+          meaning: "Interaction continues in the newly opened Project details context",
+          originalSignal: "The moving panel visually pulls attention toward the destination.",
+          removalEffect: "Keyboard focus remains on the old trigger after the content changes.",
+          impact: "ambiguous",
+          replacementSignal: "Programmatic focus moves to the Project details heading.",
+          validationCheckId: "focus-target",
+        },
+      ],
       confidence: 0.96,
       generatedCode: hierarchyReducedCode,
       validationChecks: [
@@ -325,6 +475,12 @@ export const motionExamples: readonly MotionExample[] = [
           label: "Large spatial motion is removed",
           passed: true,
           evidence: "Reduced motion uses a 120ms opacity change instead of an 80vw translation.",
+        },
+        {
+          id: "hierarchy-context",
+          label: "Destination hierarchy remains explicit",
+          passed: true,
+          evidence: "The breadcrumb reads Projects / Project details and the destination is labeled Deeper level.",
         },
       ],
       source: "demo-fallback",
