@@ -1,0 +1,175 @@
+1
+00:00:00,200 --> 00:00:01,610
+Animation is information.
+
+2
+00:00:01,880 --> 00:00:04,600
+It shows progress, confirms an outcome,
+
+3
+00:00:04,600 --> 00:00:06,950
+or explains where focus moved.
+
+4
+00:00:07,250 --> 00:00:10,200
+But reduced-motion implementations often
+delete the animation,
+
+5
+00:00:10,200 --> 00:00:12,520
+and the information with it.
+
+6
+00:00:12,810 --> 00:00:17,300
+StillMeaning asks one question:
+what disappears when motion disappears?
+
+7
+00:00:17,590 --> 00:00:20,210
+Then it reduces the motion,
+not the meaning.
+
+8
+00:00:22,200 --> 00:00:25,360
+This continuous shimmer says
+the upload is still active.
+
+9
+00:00:25,690 --> 00:00:28,880
+If we merely turn it off,
+the bar becomes static.
+
+10
+00:00:29,170 --> 00:00:33,350
+Is it progressing or stalled,
+and what is the exact value?
+
+11
+00:00:33,620 --> 00:00:37,200
+StillMeaning traces that ambiguity,
+then replaces the moving cue
+
+12
+00:00:37,200 --> 00:00:40,850
+with visible status text,
+
+13
+00:00:41,180 --> 00:00:48,800
+a numeric value,
+and real progress-bar semantics.
+
+14
+00:00:55,180 --> 00:01:00,640
+Here, scale, rotation, and path drawing
+are the success message.
+
+15
+00:01:00,920 --> 00:01:04,330
+Turning them off leaves only
+an unlabeled icon.
+
+16
+00:01:04,600 --> 00:01:07,800
+StillMeaning makes the result persistent
+and explicit with Changes saved text,
+
+17
+00:01:07,800 --> 00:01:10,760
+synchronization detail, and a polite
+status announcement,
+
+18
+00:01:11,050 --> 00:01:17,900
+without relying on motion or color alone.
+
+19
+00:01:18,200 --> 00:01:25,360
+This large slide communicates movement
+into a deeper level.
+
+20
+00:01:25,620 --> 00:01:29,900
+Removing it without a replacement creates
+an unexplained content swap
+
+21
+00:01:29,900 --> 00:01:32,620
+and leaves keyboard focus behind.
+
+22
+00:01:32,990 --> 00:01:35,700
+StillMeaning adds explicit hierarchy,
+names the destination,
+
+23
+00:01:35,700 --> 00:01:38,420
+and moves focus logically while replacing
+the travel with only a short fade.
+
+24
+00:01:40,200 --> 00:01:42,000
+StillMeaning does not stop at advice.
+
+25
+00:01:42,250 --> 00:01:46,500
+It generates an inspectable implementation
+and shows the exact before-and-after diff,
+
+26
+00:01:46,500 --> 00:01:50,500
+explains the transformation,
+and lets a developer copy the result.
+
+27
+00:01:50,500 --> 00:01:58,040
+Generated code is displayed as untrusted text
+and is never executed inside the workbench.
+
+28
+00:01:59,200 --> 00:02:00,600
+GPT-5.6 performs the core reasoning.
+
+29
+00:02:00,870 --> 00:02:04,200
+It identifies each motion-carried signal
+and predicts what becomes lost or ambiguous,
+
+30
+00:02:04,200 --> 00:02:07,500
+selects replacement cues, generates code,
+
+31
+00:02:07,780 --> 00:02:09,290
+and links each cue to structured
+validation evidence.
+
+32
+00:02:09,300 --> 00:02:11,050
+The server uses strict schema validation
+and bounded input,
+
+33
+00:02:11,050 --> 00:02:12,630
+a timeout, and a server-only key.
+
+34
+00:02:12,630 --> 00:02:14,900
+Provenance always distinguishes live GPT-5.6
+
+35
+00:02:14,900 --> 00:02:17,240
+from the clearly labeled demo fallback
+shown here.
+
+36
+00:02:17,530 --> 00:02:18,950
+Codex helped audit, design, implement, test,
+
+37
+00:02:18,950 --> 00:02:20,460
+debug, deploy, and document the project
+in one primary development session.
+
+38
+00:02:20,460 --> 00:02:21,900
+StillMeaning: reduce motion, not meaning.

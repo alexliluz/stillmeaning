@@ -74,6 +74,8 @@ Verification commands: pnpm lint, pnpm typecheck, pnpm test, pnpm build, and pnp
 ## Required media
 
 - Final video: `.tmp/submission-video/stillmeaning-build-week-demo.mp4`, 2:22, 1920×1080, English narration, verified locally
+- YouTube title, description, chapters, settings, and upload checks: [youtube-upload.md](youtube-upload.md)
+- English captions: [stillmeaning-build-week-demo.en.srt](stillmeaning-build-week-demo.en.srt), parsed successfully and manually previewed against the final MP4
 - Thumbnail: [assets/stillmeaning-thumbnail-3x2.jpg](assets/stillmeaning-thumbnail-3x2.jpg), 1440×960
 - Gallery image 1: [assets/stillmeaning-save-confirmation.jpg](assets/stillmeaning-save-confirmation.jpg), 1440×960
 - Gallery image 2: [assets/stillmeaning-panel-hierarchy.jpg](assets/stillmeaning-panel-hierarchy.jpg), 1440×960
