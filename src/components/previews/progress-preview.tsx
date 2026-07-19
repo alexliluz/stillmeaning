@@ -6,7 +6,8 @@ interface ProgressPreviewProps {
 }
 
 export function ProgressPreview({ motionMode, version }: ProgressPreviewProps) {
-  const revised = version === "stillmeaning";
+  const stillMeaning = version === "stillmeaning";
+  const original = version === "original";
 
   return (
     <div className="progress-demo" data-mode={motionMode} data-version={version}>
@@ -18,24 +19,32 @@ export function ProgressPreview({ motionMode, version }: ProgressPreviewProps) {
         </div>
       </div>
       <div
-        aria-label="Uploading quarterly-report.pdf"
-        aria-valuemax={100}
-        aria-valuemin={0}
-        aria-valuenow={68}
+        {...(stillMeaning
+          ? {
+              "aria-label": "Uploading quarterly-report.pdf",
+              "aria-valuemax": 100,
+              "aria-valuemin": 0,
+              "aria-valuenow": 68,
+              role: "progressbar",
+            }
+          : { "aria-hidden": true })}
         className="progress-track"
-        role="progressbar"
       >
         <span className="progress-track__fill" />
-        {!revised ? <span aria-hidden="true" className="progress-track__sweep" /> : null}
+        {original ? <span aria-hidden="true" className="progress-track__sweep" /> : null}
       </div>
-      <div className="progress-demo__meta">
-        <span>{revised ? "Uploading · 68%" : "Uploading"}</span>
-        <strong>{revised ? "68%" : "Active"}</strong>
-      </div>
+      {stillMeaning ? (
+        <div className="progress-demo__meta">
+          <span>Uploading · 68%</span>
+          <strong>68%</strong>
+        </div>
+      ) : null}
       <p className="preview-caption">
-        {revised
+        {stillMeaning
           ? "Static fill + numeric state"
-          : "Repeated sweep signals activity"}
+          : original
+            ? "Repeated sweep signals activity"
+            : "Static bar · activity unclear"}
       </p>
     </div>
   );

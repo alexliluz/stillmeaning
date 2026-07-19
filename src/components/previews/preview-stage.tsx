@@ -3,8 +3,26 @@ import { HierarchyPreview } from "./hierarchy-preview";
 import { ProgressPreview } from "./progress-preview";
 import { SuccessPreview } from "./success-preview";
 
-export type PreviewVersion = "original" | "stillmeaning";
+export type PreviewVersion = "original" | "motion-removed" | "stillmeaning";
 export type MotionMode = "normal" | "reduced";
+
+const previewLabels = {
+  original: {
+    ariaLabel: "Original preview",
+    eyebrow: "Before",
+    title: "Original",
+  },
+  "motion-removed": {
+    ariaLabel: "Motion Removed Only preview",
+    eyebrow: "Counterfactual",
+    title: "Motion Removed Only",
+  },
+  stillmeaning: {
+    ariaLabel: "StillMeaning preview",
+    eyebrow: "After",
+    title: "StillMeaning Version",
+  },
+} as const;
 
 interface PreviewStageProps {
   exampleId: ExampleId;
@@ -17,9 +35,11 @@ export function PreviewStage({
   version,
   motionMode,
 }: PreviewStageProps) {
+  const label = previewLabels[version];
+
   return (
     <article
-      aria-label={version === "original" ? "Original preview" : "StillMeaning preview"}
+      aria-label={label.ariaLabel}
       className="preview-stage"
       data-motion-mode={motionMode}
       data-version={version}
@@ -27,9 +47,9 @@ export function PreviewStage({
       <header className="preview-stage__header">
         <div>
           <span className="preview-stage__eyebrow">
-            {version === "original" ? "Before" : "After"}
+            {label.eyebrow}
           </span>
-          <h2>{version === "original" ? "Original" : "StillMeaning version"}</h2>
+          <h2>{label.title}</h2>
         </div>
         <span className="preview-stage__mode">
           {motionMode === "normal" ? "Normal motion" : "Reduced motion"}
