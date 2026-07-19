@@ -59,6 +59,27 @@ To run locally: install Node.js 24+ and pnpm 11.9+, clone `https://github.com/al
 
 The entrant confirmed the United States as their country of residence. The United States is included in the official rules' eligible-country list. The entrant must still personally confirm that they are above the legal age of majority and meet all other official-rule conditions before final submission.
 
+## Requirement-by-requirement completion audit — 2026-07-19
+
+| Requirement | Authoritative evidence | Status |
+| --- | --- | --- |
+| Working project | Latest `main` passes lint, sequential strict type checking, 45 unit/component tests, production build, 8 desktop/mobile browser journeys, and production dependency audit | Proven |
+| Developer Tools category | Official field 27947 accepts `Developer Tools`; prepared in [final-fields.md](final-fields.md) | Prepared, not submitted |
+| Project description / story | Devpost live project version 7 contains the repository-backed Meaning Loss Reveal story | Proven on draft |
+| Built with | Devpost editor and project update record contain the verified GPT-5.6, Responses API, Codex, Next.js, React, TypeScript, Zod, Vitest, Playwright, and pnpm stack | Proven on draft |
+| Demo URL | GitHub Actions independently reached the deployed homepage; project points to `stillmeaning.alexliluz.workers.dev` | Proven |
+| Repository URL and license | GitHub connector reports `alexliluz/stillmeaning` public; repository contains an MIT License and setup README | Proven |
+| Developer-tool install/platform/test instructions | README and field 27951 draft document Node/pnpm requirements, browser support, hosted no-account path, local setup, fallback behavior, and verification commands | Prepared |
+| Under-three-minute public video | Verified 2:22 English MP4, narration, chapters, upload copy, and parsed SRT captions exist locally | Incomplete — public YouTube URL missing |
+| Audio explains Codex and GPT-5.6 | Final narration explicitly names both and explains their substantive roles; MP4 audio was reviewed | Proven locally |
+| 3:2 thumbnail | Devpost direct upload returned a production CDN URL with background processing active | Accepted; final rendered visual unverified |
+| Product gallery | Two current 1440×960 Meaning Loss Reveal images exist and were manually inspected | Incomplete — Devpost upload missing |
+| Real GPT-5.6 runtime path | Server-only Responses API integration, strict schema, timeout, bounded input/output, provenance, and failure handling are implemented and tested | Proven in code/tests |
+| Successful live GPT-5.6 response | Latest independent deployment smoke reached the endpoint but returned explicit Platform quota fallback | Incomplete — Platform quota required |
+| Primary Codex Session ID | Must come from `/feedback` in this primary session | Missing |
+| Submitter and eligibility fields | Country is confirmed as United States | Incomplete — submitter type, legal majority, and remaining eligibility need personal confirmation |
+| Final Devpost submission | Live project reports `submitted_at: null` | Intentionally not submitted; explicit authorization required |
+
 ## P0 blockers before final submission
 
 1. Confirm entrant type, legal age of majority, and all remaining eligibility conditions.
