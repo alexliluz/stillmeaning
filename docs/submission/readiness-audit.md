@@ -16,6 +16,7 @@ This records the live Devpost project and official OpenAI Build Week submission 
 - 3:2 thumbnail: a refreshed Meaning Loss Reveal thumbnail upload completed through Devpost's prepared upload endpoint on 2026-07-19; Devpost processing and public visual readback still require manual confirmation
 - Gallery: two refreshed 1440×960 product screenshots are ready locally; Devpost's available project API does not expose gallery-photo upload, so they still require manual upload
 - Demo video: a final 2:22 English MP4 using the current Meaning Loss Reveal experience is rendered and verified locally; public YouTube upload and URL remain
+- Live GPT-5.6: an independent GitHub Actions rerun on 2026-07-19 again passed the deployed homepage and reached `/api/analyze`, but returned the explicit Platform quota fallback; job `88190057010` failed as designed because provenance was not `gpt-5.6`
 - `/feedback` Session ID: not yet generated
 
 The official deadline returned by Devpost is `2026-07-22T00:00:00Z`, which is July 21 at 5:00 PM Pacific Time and July 22 at 8:00 AM China Standard Time.
@@ -61,7 +62,7 @@ The entrant confirmed the United States as their country of residence. The Unite
 ## P0 blockers before final submission
 
 1. Confirm entrant type, legal age of majority, and all remaining eligibility conditions.
-2. Add OpenAI Platform API quota for the configured key, then rerun `Deployed GPT smoke` and verify at least one successful live GPT-5.6 analysis. The current independent run reached the API but correctly failed on `insufficient_quota`: https://github.com/alexliluz/stillmeaning/actions/runs/29607701319.
+2. Add OpenAI Platform API quota for the configured key, then rerun `Deployed GPT smoke` and verify at least one successful live GPT-5.6 analysis. The latest independent rerun reached the API on 2026-07-19 but still correctly failed on `insufficient_quota`: https://github.com/alexliluz/stillmeaning/actions/runs/29607701319.
 3. Confirm the refreshed 3:2 thumbnail rendered correctly on Devpost, then upload and verify the two prepared gallery screenshots manually.
 4. Upload the verified 2:22 MP4 as a public YouTube video and add its URL to Devpost.
 5. Run `/feedback` in this primary Codex session and save the real Session ID.

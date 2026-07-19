@@ -55,6 +55,8 @@ After reproducing that a structurally valid response arriving at 15 seconds woul
 
 The manual GitHub Actions workflow then reached the public deployment from an independent runner. Its homepage check passed and its known-example request reached `/api/analyze`, but the OpenAI request returned `insufficient_quota`. StillMeaning safely classified that response as unavailable Platform API quota and returned the visibly labeled deterministic fallback. The workflow failed as designed because provenance was `demo-fallback`, not `gpt-5.6`: [Actions run 29607701319](https://github.com/alexliluz/stillmeaning/actions/runs/29607701319).
 
+The failed job was rerun independently on 2026-07-19 at 11:52 UTC after the final submission assets were prepared. The homepage passed again. Job `88190057010` then received `source: demo-fallback`, `semanticRole: progress`, four validation checks, and the explicit notice `GPT-5.6 Platform API quota is unavailable`. This proves the blocker remained quota at that time; it was not reclassified as a transport, authentication, model-access, or ordinary rate-limit failure.
+
 This record does **not** claim a successful live GPT-5.6 response. The remaining blocker is separate OpenAI Platform API balance or quota for the configured key; Build Week Codex credits do not cover runtime GPT-5.6 API calls. After quota is available, rerun the manual `Deployed GPT smoke` workflow and require a passing result before final competition submission.
 
 ## Cloudflare deployment status
