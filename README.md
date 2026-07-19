@@ -2,7 +2,9 @@
 
 **Reduce motion, not meaning.**
 
-StillMeaning is an AI-assisted motion accessibility workbench for frontend developers, design-system teams, accessibility engineers, and product designers. It analyzes what an animation communicates, identifies motion risk, and proposes a reduced-motion implementation that preserves progress, status, hierarchy, focus, and feedback.
+**Animation is information.** StillMeaning reveals what becomes lost or ambiguous when motion is simply removed, then uses GPT-5.6 to generate a safer implementation that preserves progress, status, hierarchy, focus, and feedback.
+
+It is an AI-assisted motion accessibility workbench for frontend developers, design-system teams, accessibility engineers, and product designers—not another scanner that only checks whether `prefers-reduced-motion` exists.
 
 Built for the Developer Tools track of OpenAI Build Week 2026.
 
@@ -16,7 +18,7 @@ The three curated examples remain usable if live GPT-5.6 is unavailable and alwa
 
 ## The problem
 
-Web animation is often functional, not decorative. A moving progress bar communicates activity, a checkmark confirms an outcome, and a sliding panel explains hierarchy and context. A blanket `animation: none` rule may reduce discomfort while also deleting information.
+Web animation is often functional, not decorative. A moving progress bar communicates activity, a checkmark confirms an outcome, and a sliding panel explains hierarchy and context. A blanket `animation: none` rule may reduce discomfort while also deleting or weakening that information. The important question is not only “did the motion stop?” but **“what disappeared when it stopped?”**
 
 [WCAG 2.3.3](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions) says interaction-triggered motion should be disableable unless it is essential to functionality or information. Apple’s [Reduced Motion evaluation criteria](https://developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria) goes further: when motion conveys a status change or hierarchical transition, do not remove it entirely. StillMeaning turns that principle into a developer workflow.
 
@@ -31,9 +33,11 @@ The stable golden path contains three curated cases:
 For each case, the workbench shows:
 
 - detected technique, semantic role, risk, and evidence;
-- the original and StillMeaning versions side by side;
+- the original and StillMeaning versions side by side by default;
+- a **Why not just turn motion off?** counterfactual that reveals **Motion Removed Only** and **Meaning at Risk**;
+- a cue-by-cue semantic trace from original signal, to removal effect, to StillMeaning replacement;
 - normal and reduced-motion modes;
-- a bounded **Meaning Preserved** evidence checklist;
+- a bounded **Meaning preserved by these checks** receipt and explicit developer-review boundary;
 - an inspectable code diff and copy action;
 - explicit provenance: `Live · GPT-5.6` or `Demo fallback`.
 
@@ -51,7 +55,7 @@ flowchart LR
   Z --> UI
   S -->|"known examples only"| F["Labeled deterministic fallback"]
   F --> UI
-  UI --> D["Text-only diff and evidence"]
+  UI --> D["Semantic trace + text-only code diff"]
 ```
 
 Key modules:
@@ -65,13 +69,13 @@ Key modules:
 
 ## GPT-5.6 integration
 
-GPT-5.6 has a substantive role. It must infer semantic purpose, identify motion risk, select a safer strategy, generate replacement code, explain preserved meaning, and return validation evidence.
+GPT-5.6 has a substantive role. It must infer semantic purpose, identify motion risk, explain what becomes lost or ambiguous under blanket motion removal, select a safer strategy, generate replacement code, map each meaning to a replacement cue, and return validation evidence.
 
 The provider uses the OpenAI Responses API with:
 
 - `gpt-5.6` by default (`OPENAI_MODEL` can override it);
 - `zodTextFormat` structured output;
-- a strict Zod schema and a second application-side parse;
+- a strict Zod schema, cross-field semantic-trace references, and a second application-side parse;
 - low reasoning effort and a 6,000-token output ceiling;
 - `store: false`;
 - an abort signal and 30-second service timeout.
@@ -157,7 +161,7 @@ The deployment command preserves dashboard variables and secrets. `.open-next`, 
 
 ## Supported experience
 
-- Responsive web UI tested at 1440×1000 and mobile Chromium dimensions.
+- Responsive web UI tested at desktop and 390×844 mobile dimensions.
 - Keyboard navigation and visible focus states.
 - OS `prefers-reduced-motion` plus an in-product comparison switch.
 - Hand-authored previews for the three curated examples.
@@ -165,7 +169,7 @@ The deployment command preserves dashboard variables and secrets. `.open-next`, 
 
 ## Verification
 
-The current release passes lint, strict type checking, 36 Vitest tests, a production build, and 8 Playwright tests across desktop and mobile Chromium. The same 8 browser tests pass against a local Cloudflare `workerd` preview. The browser suite covers all three cases, focus movement, keyboard order, clipboard feedback, custom-source bounds, and system reduced-motion behavior.
+The current release passes lint, strict type checking, 45 Vitest tests, a production build, and 8 Playwright tests across desktop and mobile Chromium. The browser suite covers the Original → Motion Removed Only → StillMeaning flow for all three cases, focus movement, keyboard order, clipboard feedback, custom-source bounds, and system reduced-motion behavior. Exact results are recorded in the verification record.
 
 See [the verification record](docs/testing/2026-07-17-verification.md) for exact results and the honest live-API limitation observed in this development environment.
 

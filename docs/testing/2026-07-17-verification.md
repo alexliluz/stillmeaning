@@ -10,23 +10,24 @@ Environment:
 
 ## Automated checks
 
-The full local quality suite was rerun on 2026-07-18 after the Cloudflare account subdomain changed to `alexliluz`.
+The full local quality suite was rerun on 2026-07-19 after the Meaning Loss Reveal feature was implemented.
 
 | Check | Result |
 | --- | --- |
 | `pnpm lint` | Pass |
 | `pnpm typecheck` | Pass |
-| `pnpm test` | Pass — 12 files, 36 tests |
+| `pnpm test` | Pass — 12 files, 45 tests |
 | `pnpm build` | Pass — `/` static and `/api/analyze` dynamic |
 | `pnpm test:e2e` | Pass — 8 tests across desktop and mobile Chromium |
 | `pnpm audit --prod` | Pass — no known vulnerabilities |
 | `pnpm build:cloudflare` | Pass — Next.js 16.2.10 converted with OpenNext 1.20.1 |
-| `wrangler deploy --dry-run` | Pass — 1087.87 KiB gzip, below the 3 MiB Workers Free limit |
+| `wrangler deploy --dry-run` | Pass — 1092.04 KiB gzip, below the 3 MiB Workers Free limit |
 | Cloudflare `workerd` browser suite | Pass — the same 8 desktop/mobile tests |
 
 The browser suite covers:
 
-- all three curated transformations;
+- the Original → Motion Removed Only → StillMeaning flow for all three curated transformations;
+- Meaning at Risk and cue-by-cue semantic receipts;
 - visible `Demo fallback` provenance;
 - normal/reduced comparison controls;
 - hierarchy destination focus;
@@ -38,7 +39,9 @@ The browser suite covers:
 ## Manual browser checks
 
 - Desktop workbench inspected in the Codex in-app browser.
-- 390×844 responsive view inspected; the slogan, example controls, current comparison, and code workflow remain reachable.
+- 390×844 responsive view inspected; the slogan, example controls, counterfactual comparison, and code workflow remain reachable with no document-level horizontal overflow.
+- Default and Meaning at Risk states were inspected visually; state remains explicit through labels and symbols rather than color alone.
+- The browser console contained no warnings or errors during the final local inspection.
 - Copy feedback was verified after adding a timeout-safe clipboard path.
 - Focus styles are visible and state is not conveyed by color alone.
 

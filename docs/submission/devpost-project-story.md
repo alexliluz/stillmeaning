@@ -6,7 +6,7 @@ Status: ready to paste after the hosted demo and public video URLs are available
 
 - **Project name:** StillMeaning
 - **Track:** Developer Tools
-- **Elevator pitch:** Reduce motion, not meaning. StillMeaning uses GPT-5.6 and Codex to create safer web animations without losing hierarchy, progress, status, or feedback.
+- **Elevator pitch:** Animation is information. StillMeaning reveals what blanket motion removal erases, then uses GPT-5.6 to generate safer code that preserves progress, status, hierarchy, focus, and feedback.
 - **Repository:** https://github.com/alexliluz/stillmeaning
 - **Demo URL:** https://stillmeaning.alexliluz.workers.dev
 - **Video URL:** `[ADD PUBLIC YOUTUBE URL]`
@@ -30,7 +30,7 @@ Use only the tags Devpost accepts from this verified list:
 
 ## Inspiration
 
-Reduced-motion support is often implemented as a blanket `animation: none`. That can reduce discomfort, but it can also erase information. A progress shimmer communicates that work is still happening. A success animation confirms an outcome. A sliding panel explains hierarchy and where focus moved.
+**Animation is information.** Reduced-motion support is often implemented as a blanket `animation: none`. That can reduce discomfort, but it can also erase information. A progress shimmer communicates that work is still happening. A success animation confirms an outcome. A sliding panel explains hierarchy and where focus moved. The question that led us to StillMeaning was: **what disappears when motion disappears?**
 
 Accessibility guidance reflects this tension. WCAG 2.3.3 requires interaction-triggered motion to be disableable unless it is essential to functionality or information, while Apple’s Reduced Motion criteria explicitly warns against removing animation entirely when it communicates status or hierarchy. We built StillMeaning around one principle: **reduce motion, not meaning**.
 
@@ -40,7 +40,9 @@ StillMeaning is an AI-assisted motion accessibility workbench for frontend devel
 
 The demo includes three stable examples: upload progress, save confirmation, and panel hierarchy. For each animation, StillMeaning identifies the technique, semantic role, motion risk, and supporting evidence. It then proposes a safer implementation, explains what meaning must remain, and shows the exact code diff.
 
-The central experience is a side-by-side Original versus StillMeaning Version comparison. Reviewers can switch between normal and reduced-motion modes, inspect a bounded Meaning Preserved checklist, and copy the generated code. Developers can also paste HTML, CSS, JavaScript, or React source for analysis when live GPT-5.6 access is available.
+The central experience is a side-by-side Original versus StillMeaning Version comparison. A reviewer can select **Why not just turn motion off?** to replace the right preview with a controlled **Motion Removed Only** counterfactual. **Meaning at Risk** then traces each piece of information from its original motion cue to what becomes lost or ambiguous. **Restore meaning with StillMeaning** maps the same signals to explicit replacement cues and bounded validation evidence.
+
+Reviewers can also switch between normal and reduced-motion modes, inspect the exact code diff, and copy the generated result. Developers can paste HTML, CSS, JavaScript, or React source for text-only analysis when live GPT-5.6 access is available.
 
 ## How we built it
 
@@ -57,10 +59,11 @@ GPT-5.6 performs the core reasoning task rather than acting as a chat decoration
 1. identify the animation technique and original behavior;
 2. infer the semantic role carried by the motion;
 3. assess motion risk and explain the evidence;
-4. select a lower-motion or non-motion strategy;
-5. generate usable replacement code;
-6. state which meaning is preserved; and
-7. return machine-checkable validation evidence.
+4. state what becomes lost or ambiguous if motion is only disabled;
+5. select a lower-motion or non-motion strategy;
+6. map each original signal to a non-motion replacement cue;
+7. generate usable replacement code; and
+8. link each replacement cue to machine-checkable validation evidence.
 
 The provider uses the Responses API with `store: false`, a 30-second service timeout, a strict Zod-backed schema, bounded input and output, and application-side re-validation. The API key stays on the server. The model cannot set its own provenance, and no generated code is executed in the product.
 
@@ -80,16 +83,17 @@ Finally, showing generated UI code creates a security temptation: executing it w
 
 ## Accomplishments
 
-- A two-minute golden path that makes motion semantics visible before showing code.
+- A two-minute golden path that makes the failure of blanket motion removal visible before showing the fix.
 - Three persuasive transformations covering progress, outcome feedback, and hierarchy/focus.
+- A structured semantic trace connecting original signal → removal effect → replacement cue → bounded evidence.
 - A substantive GPT-5.6 workflow with strict structured output and safe failure handling.
 - Clear provenance that distinguishes live model output from deterministic demo data.
 - A responsive, keyboard-accessible interface that respects `prefers-reduced-motion` itself.
-- A verified release with lint, strict type checking, 36 unit/component tests, a production build, 8 desktop/mobile browser tests, and no known production dependency vulnerabilities at the recorded audit time.
+- A verified release with lint, strict type checking, 45 unit/component tests, a production build, 8 desktop/mobile browser tests, and no known production dependency vulnerabilities at the recorded audit time.
 
 ## What we learned
 
-Motion accessibility is not a binary animation-on or animation-off decision. The useful unit of analysis is the meaning carried by the animation: status, progress, hierarchy, focus, feedback, or causality. Once that role is explicit, safer alternatives become much more concrete.
+Motion accessibility is not a binary animation-on or animation-off decision. The useful unit of analysis is the meaning carried by the animation: status, progress, hierarchy, focus, feedback, or causality. Showing the counterfactual first made the product much clearer: developers understand the transformation faster when they can see the information failure that a blanket fix would create.
 
 We also learned that AI remediation is most trustworthy when the product exposes reasoning, provenance, constraints, and code changes together. A generated snippet alone is not enough for developer review.
 

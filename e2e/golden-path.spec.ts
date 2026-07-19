@@ -13,7 +13,24 @@ test("a judge can inspect all three meaning-preserving transformations", async (
   for (const name of ["Upload progress", "Save confirmation", "Panel hierarchy"]) {
     await examples.getByRole("button").filter({ hasText: name }).click();
     await expect(page.getByRole("heading", { name, level: 1 })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Meaning Preserved" })).toBeVisible();
+    await page.getByRole("button", { name: "Why not just turn motion off?" }).click();
+    await expect(
+      page.getByRole("article", { name: "Motion Removed Only preview" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Meaning at Risk" }),
+    ).toBeVisible();
+    await page
+      .getByRole("button", { name: "Restore meaning with StillMeaning" })
+      .click();
+    await expect(
+      page.getByRole("article", { name: "StillMeaning preview" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Meaning preserved by these checks",
+      }),
+    ).toBeVisible();
     await expect(page.getByRole("button", { name: "Copy generated code" })).toBeVisible();
     await expect(page.getByText("Demo fallback", { exact: true })).toBeVisible();
   }
@@ -51,8 +68,17 @@ test("the workbench follows system reduced-motion preference", async ({ page }) 
   const sweep = page.locator(".progress-track__sweep");
   await expect(sweep).toHaveCSS("display", "none");
   await expect(
-    page.getByRole("article", { name: "Original preview" }).getByRole("progressbar"),
+    page.getByRole("article", { name: "StillMeaning preview" }).getByRole("progressbar"),
   ).toHaveAttribute("aria-valuenow", "68");
+
+  await page.getByRole("button", { name: "Why not just turn motion off?" }).click();
+  const removedPreview = page.getByRole("article", {
+    name: "Motion Removed Only preview",
+  });
+  await expect(removedPreview.locator(".progress-track__sweep")).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Restore meaning with StillMeaning" }),
+  ).toBeEnabled();
 });
 
 test("primary controls follow a logical keyboard order", async ({ page }) => {
@@ -68,6 +94,7 @@ test("primary controls follow a logical keyboard order", async ({ page }) => {
     page.getByRole("button", { name: "Normal motion" }),
     page.getByRole("button", { name: "Reduced motion" }),
     page.getByRole("button", { name: "Paste your code" }),
+    page.getByRole("button", { name: "Why not just turn motion off?" }),
     page.getByRole("button", { name: "Copy generated code" }),
   ];
 
