@@ -6,9 +6,14 @@ import { useMemo, useState } from "react";
 interface CodeDiffProps {
   original: string;
   revised: string;
+  title?: string;
 }
 
-export function CodeDiff({ original, revised }: CodeDiffProps) {
+export function CodeDiff({
+  original,
+  revised,
+  title = "Generated code diff",
+}: CodeDiffProps) {
   const [copyStatus, setCopyStatus] = useState("");
   const changes = useMemo(() => diffLines(original, revised), [original, revised]);
 
@@ -34,7 +39,7 @@ export function CodeDiff({ original, revised }: CodeDiffProps) {
       <header className="code-diff__header">
         <div>
           <span className="section-kicker">Inspectable transformation</span>
-          <h2 id="code-diff-title">Generated code diff</h2>
+          <h2 id="code-diff-title">{title}</h2>
         </div>
         <div className="code-diff__actions">
           <span className="diff-legend"><i data-change="removed" /> Removed</span>

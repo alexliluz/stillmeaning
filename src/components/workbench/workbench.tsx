@@ -17,6 +17,10 @@ import {
 } from "../previews/preview-stage";
 import { AnalysisInspector } from "./analysis-inspector";
 import { ExampleList } from "./example-list";
+import {
+  MeaningComparisonControl,
+  type ComparisonTarget,
+} from "./meaning-comparison-control";
 
 interface WorkbenchProps {
   initialAnalysis: Analysis;
@@ -37,6 +41,8 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
   );
   const [pending, setPending] = useState(false);
   const [motionMode, setMotionMode] = useState<MotionMode>("normal");
+  const [comparisonTarget, setComparisonTarget] =
+    useState<ComparisonTarget>("stillmeaning");
   const [sourceOpen, setSourceOpen] = useState(false);
   const [sourceError, setSourceError] = useState<string | undefined>();
   const [customSource, setCustomSource] = useState<string | undefined>();
@@ -55,6 +61,7 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
     setNotice("Deterministic fixture — not a live GPT-5.6 response.");
     setCustomSource(undefined);
     setSourceError(undefined);
+    setComparisonTarget("stillmeaning");
   }
 
   async function analyzeSelected() {
@@ -108,6 +115,7 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
       setAnalysis(result.analysis);
       setNotice(result.notice);
       setCustomSource(source);
+      setComparisonTarget("stillmeaning");
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Custom analysis could not be completed.";
@@ -197,6 +205,12 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
               pending={pending}
             />
           ) : null}
+          {!customSource ? (
+            <MeaningComparisonControl
+              onTargetChange={setComparisonTarget}
+              target={comparisonTarget}
+            />
+          ) : null}
           {customSource ? (
             <div className="safe-preview-message">
               <strong>Preview intentionally disabled for generated code</strong>
@@ -215,18 +229,23 @@ export function Workbench({ initialAnalysis }: WorkbenchProps) {
               <div className="comparison-grid__divider" aria-hidden="true">→</div>
               <PreviewStage
                 exampleId={selectedId}
-                key={`${selectedId}-stillmeaning`}
+                key={`${selectedId}-${comparisonTarget}`}
                 motionMode={motionMode}
-                version="stillmeaning"
+                version={comparisonTarget}
               />
             </div>
           )}
           <CodeDiff
             original={customSource ?? selected.originalCode}
             revised={analysis.generatedCode}
+            title="StillMeaning generated code"
           />
         </section>
-        <AnalysisInspector analysis={analysis} notice={notice} />
+        <AnalysisInspector
+          analysis={analysis}
+          comparisonTarget={customSource ? "stillmeaning" : comparisonTarget}
+          notice={notice}
+        />
       </main>
     </div>
   );

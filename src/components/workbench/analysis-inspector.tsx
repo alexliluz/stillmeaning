@@ -1,15 +1,18 @@
 import type { Analysis } from "../../domain/analysis";
-import { summarizeMeaningChecks } from "../../domain/meaning-validation";
-import { ShieldCheckIcon } from "../icons";
+import type { ComparisonTarget } from "./meaning-comparison-control";
+import { SemanticTrace } from "./semantic-trace";
 
 interface AnalysisInspectorProps {
   analysis: Analysis;
+  comparisonTarget: ComparisonTarget;
   notice?: string;
 }
 
-export function AnalysisInspector({ analysis, notice }: AnalysisInspectorProps) {
-  const summary = summarizeMeaningChecks(analysis.validationChecks);
-
+export function AnalysisInspector({
+  analysis,
+  comparisonTarget,
+  notice,
+}: AnalysisInspectorProps) {
   return (
     <aside aria-label="Animation analysis" className="inspector">
       <div className="inspector__header">
@@ -53,26 +56,7 @@ export function AnalysisInspector({ analysis, notice }: AnalysisInspectorProps) 
         <p>{analysis.proposedAlternative}</p>
       </section>
 
-      <section className="meaning-card" data-summary={summary}>
-        <div className="meaning-card__title">
-          <ShieldCheckIcon />
-          <div>
-            <span className="section-kicker">Validation evidence</span>
-            <h3>{summary === "preserved" ? "Meaning Preserved" : "Needs Review"}</h3>
-          </div>
-        </div>
-        <ul>
-          {analysis.validationChecks.map((check) => (
-            <li key={check.id}>
-              <span aria-hidden="true">{check.passed ? "✓" : "!"}</span>
-              <div>
-                <strong>{check.label}</strong>
-                <p>{check.evidence}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <SemanticTrace analysis={analysis} target={comparisonTarget} />
     </aside>
   );
 }
