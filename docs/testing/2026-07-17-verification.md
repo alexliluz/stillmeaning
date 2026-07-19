@@ -59,6 +59,8 @@ The manual GitHub Actions workflow then reached the public deployment from an in
 
 The failed job was rerun independently on 2026-07-19 at 11:52 UTC after the final submission assets were prepared. The homepage passed again. Job `88190057010` then received `source: demo-fallback`, `semanticRole: progress`, four validation checks, and the explicit notice `GPT-5.6 Platform API quota is unavailable`. This proves the blocker remained quota at that time; it was not reclassified as a transport, authentication, model-access, or ordinary rate-limit failure.
 
+After the user approved continuing the submission workflow, the failed job was rerun once more on 2026-07-19 at 12:23 UTC. The deployed homepage passed, while job `88192624622` again returned `source: demo-fallback`, `semanticRole: progress`, four validation checks, and the same explicit Platform quota notice. The repeated result confirms that the deployment is reachable and the remaining live-model blocker is still runtime Platform quota.
+
 This record does **not** claim a successful live GPT-5.6 response. The remaining blocker is separate OpenAI Platform API balance or quota for the configured key; Build Week Codex credits do not cover runtime GPT-5.6 API calls. After quota is available, rerun the manual `Deployed GPT smoke` workflow and require a passing result before final competition submission.
 
 ## Cloudflare deployment status

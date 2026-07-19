@@ -16,7 +16,7 @@ This records the live Devpost project and official OpenAI Build Week submission 
 - 3:2 thumbnail: Devpost's direct upload API accepted a 600×400 Meaning Loss Reveal derivative on 2026-07-19 and returned `https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/004/938/209/datas/medium.jpg` with `processing: true`; final CDN and editor visual readback still require confirmation because this development network reset the CDN connection
 - Gallery: two refreshed 1440×960 product screenshots are ready locally; Devpost's available project API does not expose gallery-photo upload, so they still require manual upload
 - Demo video: a final 2:22 English MP4 using the current Meaning Loss Reveal experience is rendered and verified locally; title, description, chapters, upload settings, and validated English SRT captions are prepared; public YouTube upload and URL remain
-- Live GPT-5.6: an independent GitHub Actions rerun on 2026-07-19 again passed the deployed homepage and reached `/api/analyze`, but returned the explicit Platform quota fallback; job `88190057010` failed as designed because provenance was not `gpt-5.6`
+- Live GPT-5.6: independent GitHub Actions reruns on 2026-07-19 passed the deployed homepage and reached `/api/analyze`, but returned the explicit Platform quota fallback; latest job `88192624622` failed as designed because provenance was not `gpt-5.6`
 - `/feedback` Session ID: not yet generated
 
 The official deadline returned by Devpost is `2026-07-22T00:00:00Z`, which is July 21 at 5:00 PM Pacific Time and July 22 at 8:00 AM China Standard Time.
