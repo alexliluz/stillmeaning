@@ -8,7 +8,7 @@ The final local render is 142.016 seconds, below Devpost's three-minute limit. I
 
 **Voiceover:**
 
-> Animation is information. It shows progress, confirms an outcome, or explains where focus moved. But reduced-motion implementations often delete the animation, and the information with it. StillMeaning asks one question: what disappears when motion disappears? Then it reduces the motion, not the meaning.
+> Animation carries information. It shows progress, confirms an outcome, and explains where focus moved. But reduced-motion implementations often remove the animation—and the meaning with it. StillMeaning asks: what disappears when motion disappears? Then it reduces motion, not meaning.
 
 ## 0:22–0:55 — Upload progress and the counterfactual
 
@@ -16,7 +16,7 @@ The final local render is 142.016 seconds, below Devpost's three-minute limit. I
 
 **Voiceover:**
 
-> This continuous shimmer says the upload is still active. If we merely turn it off, the bar becomes static. Is it progressing or stalled, and what is the exact value? StillMeaning traces that ambiguity, then replaces the moving cue with visible status text, a numeric value, and real progress-bar semantics.
+> This continuous shimmer says an upload is active. Turn it off and the bar becomes static: is it moving, stalled, or complete? StillMeaning exposes that ambiguity, then replaces the moving cue with status text, an exact value, and real progress-bar semantics.
 
 ## 0:55–1:18 — Success feedback
 
@@ -24,7 +24,7 @@ The final local render is 142.016 seconds, below Devpost's three-minute limit. I
 
 **Voiceover:**
 
-> Here, scale, rotation, and path drawing are the success message. Turning them off leaves only an unlabeled icon. StillMeaning makes the result persistent and explicit with Changes saved text, synchronization detail, and a polite status announcement, without relying on motion or color alone.
+> Here, scale, rotation, and path drawing communicate success. Removing them leaves an unlabeled icon. StillMeaning makes the result persistent: Changes saved, synchronization detail, and a polite status announcement—without relying on motion or color alone.
 
 ## 1:18–1:40 — Hierarchy and focus
 
@@ -32,7 +32,7 @@ The final local render is 142.016 seconds, below Devpost's three-minute limit. I
 
 **Voiceover:**
 
-> This large slide communicates movement into a deeper level. Removing it without a replacement creates an unexplained content swap and leaves keyboard focus behind. StillMeaning adds explicit hierarchy, names the destination, and moves focus logically while replacing the travel with only a short fade.
+> This slide communicates movement into a deeper level. Remove it and the content swaps without explanation—and keyboard focus remains behind. StillMeaning names the destination, preserves hierarchy, moves focus logically, and replaces travel with a short fade.
 
 ## 1:40–1:59 — Code transformation
 
@@ -40,7 +40,7 @@ The final local render is 142.016 seconds, below Devpost's three-minute limit. I
 
 **Voiceover:**
 
-> StillMeaning does not stop at advice. It generates an inspectable implementation, shows the exact before-and-after diff, explains the transformation, and lets a developer copy the result. Generated code is displayed as untrusted text and is never executed inside the workbench.
+> StillMeaning does more than give advice. It generates an inspectable implementation, shows the before-and-after diff, explains the transformation, and lets developers copy it. Generated code remains untrusted text; the workbench never executes it.
 
 ## 1:59–2:14 — GPT-5.6 and guardrails
 
@@ -48,7 +48,7 @@ The final local render is 142.016 seconds, below Devpost's three-minute limit. I
 
 **Voiceover:**
 
-> GPT-5.6 performs the core reasoning. It identifies each motion-carried signal, predicts what becomes lost or ambiguous, selects replacement cues, generates code, and links each cue to structured validation evidence. The server uses strict schema validation, bounded input, a timeout, and a server-only key. Provenance always distinguishes live GPT-5.6 from the clearly labeled demo fallback shown here.
+> GPT-5.6 does the core reasoning. It identifies each motion-carried signal, predicts what becomes lost or ambiguous, selects replacement cues, generates code, and links every cue to structured validation evidence. The server adds strict schema validation, bounded input, a timeout, and a server-only key. Provenance always distinguishes live GPT-5.6 from the demo fallback shown here.
 
 ## 2:14–2:22 — Codex and close
 

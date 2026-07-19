@@ -4,11 +4,11 @@ Use this package for the required public, under-three-minute Build Week demo. Up
 
 ## Video file
 
-- Local file: `.tmp/submission-video/stillmeaning-build-week-demo.mp4`
+- Local file: `.tmp/submission-video-eddy/stillmeaning-build-week-demo-eddy-final.mp4`
 - Duration: 2:22
 - Resolution: 1920×1080
 - Language: English
-- SHA-256: `e3f21bd23ff3378476924de9315af09ed65f6bdae85b33e15f6db9d24b4c1a82`
+- SHA-256: `884cf64ac4c654f561643baa1e5a79d4b920724519810aeb8d62f136040d0741`
 
 ## Title
 

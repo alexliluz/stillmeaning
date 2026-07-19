@@ -14,6 +14,8 @@ The full local quality suite was rerun on 2026-07-19 after the Meaning Loss Reve
 
 The same core suite was rerun again on 2026-07-19 against final submission-material commit `d8e83a8`. Lint, 45 Vitest tests, the production build, the production dependency audit, and all 8 Playwright journeys passed. An initial standalone `pnpm typecheck` was mistakenly started concurrently with `next build` and observed `.next/types` while the build was replacing it; the build's own TypeScript stage passed, and a clean sequential `pnpm typecheck` immediately passed. No product defect was found and the worktree remained clean.
 
+The browser suite was rerun while final submission materials were being audited. The first fully parallel run used five browser workers and exceeded Playwright's default 30-second timeout for the complete three-example golden path on both viewports, although the same desktop path passed in 5.3 seconds with one worker. This was test-runner contention against Next.js development compilation, not a failed product assertion. The configured worker cap was reduced to two without changing any test assertion; two subsequent full runs passed all eight journeys in 6.9 seconds and 7.1 seconds.
+
 | Check | Result |
 | --- | --- |
 | `pnpm lint` | Pass |
@@ -93,5 +95,6 @@ This record does **not** claim a successful live GPT-5.6 response. The remaining
 - HyperFrames reported zero lint, runtime, layout, and motion issues; all 20 detected text checks passed WCAG AA contrast.
 - FFmpeg found no black interval longer than one second and no silence interval longer than two seconds at -45 dB.
 - Final audio measured -19.0 dB mean and -4.7 dB peak; five representative frames were manually reviewed.
-- Final local MP4 SHA-256: `e3f21bd23ff3378476924de9315af09ed65f6bdae85b33e15f6db9d24b4c1a82`.
-- The video remains in Git-ignored `.tmp`; no public YouTube URL is claimed yet.
+- Re-rendered the final video with the locally available Eddy English voice and a shorter, more conversational narration script. The 142.016-second 1080p MP4 passed HyperFrames lint (0 errors, 0 warnings), 15-sample layout inspection (0 issues), audio checks (-19.6 dB mean, -1.6 dB peak, no silence over two seconds), and five key-frame reviews.
+- Current final local MP4: `.tmp/submission-video-eddy/stillmeaning-build-week-demo-eddy-final.mp4`; SHA-256: `884cf64ac4c654f561643baa1e5a79d4b920724519810aeb8d62f136040d0741`.
+- Published the re-rendered Eddy demo publicly on YouTube: `https://www.youtube.com/watch?v=Nfj_JkcTDVc`. The English SRT is prepared locally; its Studio upload remains to be confirmed.

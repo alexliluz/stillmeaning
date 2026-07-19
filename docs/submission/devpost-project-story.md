@@ -9,7 +9,7 @@ Status: Project Story and Built with tags are live on the Devpost draft; the pub
 - **Elevator pitch:** Animation is information. StillMeaning reveals what blanket motion removal erases, then uses GPT-5.6 to generate safer code that preserves progress, status, hierarchy, focus, and feedback.
 - **Repository:** https://github.com/alexliluz/stillmeaning
 - **Demo URL:** https://stillmeaning.alexliluz.workers.dev
-- **Video URL:** `[ADD PUBLIC YOUTUBE URL]`
+- **Video URL:** `https://www.youtube.com/watch?v=Nfj_JkcTDVc`
 - **Primary Codex Session ID:** `[RUN /feedback IN THE PRIMARY CODEX SESSION]`
 - **Supported platform:** Modern desktop and mobile web browsers
 

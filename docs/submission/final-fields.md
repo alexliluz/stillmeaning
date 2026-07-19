@@ -12,7 +12,7 @@ Official requirements were re-read from Devpost at `2026-07-19T11:54:17Z`. Submi
 - **Built with:** GPT-5.6, OpenAI Responses API, Codex, Next.js, React, TypeScript, Zod, Vitest, Playwright, pnpm
 - **Repository:** https://github.com/alexliluz/stillmeaning
 - **Demo:** https://stillmeaning.alexliluz.workers.dev
-- **Video:** `[ADD PUBLIC YOUTUBE URL]`
+- **Video:** `https://www.youtube.com/watch?v=Nfj_JkcTDVc`
 
 The GitHub repository is public and carries an MIT License. The README contains setup instructions, sample/demo behavior, supported platforms, testing commands, Codex contribution evidence, GPT-5.6 integration details, and fallback disclosure.
 
@@ -73,22 +73,22 @@ Verification commands: pnpm lint, pnpm typecheck, pnpm test, pnpm build, and pnp
 
 ## Required media
 
-- Final video: `.tmp/submission-video/stillmeaning-build-week-demo.mp4`, 2:22, 1920×1080, English narration, verified locally
+- Final video: `.tmp/submission-video-eddy/stillmeaning-build-week-demo-eddy-final.mp4`, 2:22, 1920×1080, Eddy English narration, verified locally
 - YouTube title, description, chapters, settings, and upload checks: [youtube-upload.md](youtube-upload.md)
 - English captions: [stillmeaning-build-week-demo.en.srt](stillmeaning-build-week-demo.en.srt), parsed successfully and manually previewed against the final MP4
 - Thumbnail: [assets/stillmeaning-thumbnail-3x2.jpg](assets/stillmeaning-thumbnail-3x2.jpg), 1440×960
 - Gallery image 1: [assets/stillmeaning-save-confirmation.jpg](assets/stillmeaning-save-confirmation.jpg), 1440×960
 - Gallery image 2: [assets/stillmeaning-panel-hierarchy.jpg](assets/stillmeaning-panel-hierarchy.jpg), 1440×960
 
-Devpost accepted a 600×400 3:2 derivative of the thumbnail through its direct upload API and returned a production CDN URL with background processing active. Confirm the rendered result in the editor before final submission; the two gallery images are not yet uploaded.
+Devpost accepted a 600×400 3:2 derivative of the thumbnail through its direct upload API and returned a production CDN URL. The editor subsequently showed the thumbnail as present. On 2026-07-20, both gallery images were uploaded manually; the public project page exposed a three-item media carousel.
 
 ## Final human confirmations
 
 Before any final Submit action:
 
 1. confirm **Individual** submitter type, legal age of majority, and all eligibility conditions;
-2. add the public YouTube URL and confirm the video is publicly viewable;
-3. confirm the refreshed thumbnail and both gallery images render correctly on Devpost;
+2. confirm the public YouTube video remains viewable and its English captions finish processing;
+3. confirm the refreshed thumbnail and both gallery images remain rendered correctly on Devpost;
 4. add separate OpenAI Platform quota and require a passing live `Deployed GPT smoke` result;
 5. run `/feedback` in this primary Codex session and paste the real Session ID; and
 6. manually review every field, then explicitly authorize final Devpost submission.

@@ -3,6 +3,10 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
+  // The dev server compiles client modules on demand. Limiting concurrent browser
+  // sessions keeps the complete desktop/mobile golden path below its real timeout
+  // without weakening any interaction assertion.
+  workers: 2,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
   reporter: "list",
