@@ -64,10 +64,11 @@ This record does **not** claim a successful live GPT-5.6 response. The remaining
 - On 2026-07-18, the account-level `workers.dev` subdomain was renamed to `alexliluz`; Cloudflare API readback confirmed the new subdomain and that the existing `stillmeaning` Worker route remains enabled. The Worker identity and deployment were not recreated.
 - A 2026-07-18 terminal HTTPS check of the new hostname from the development network timed out after 15 seconds with HTTP status `000`. Follow-up DNS-over-HTTPS checks were also reset or returned no A records from the shell environment.
 - A separate Codex in-app browser successfully navigated to the public URL and read the page title `StillMeaning — Reduce motion, not meaning`, confirming that the deployed hostname serves the application. Its DOM-control channel timed out before an analysis button could be triggered, so this does not establish a live GPT-5.6 success response.
-- The safe provider-failure classification release was deployed successfully on 2026-07-18 as Cloudflare Worker version `3adaef8c-c991-4ba1-bfe4-919ef4896678`.
-- Worker startup time reported for that deployment: 31 ms
-- `OPENAI_API_KEY` was confirmed again on 2026-07-18 as an existing Cloudflare `secret_text` binding and was reused; the value was never printed or committed.
-- The deployed Secret Change version is receiving 100% of Worker traffic according to Wrangler.
+- The Meaning Loss Reveal release was deployed successfully on 2026-07-19 as Cloudflare Worker version `24ef0b28-6e5f-467d-a32f-966f4977abb5`, replacing the earlier provider-failure classification release without recreating the Worker.
+- Worker startup time reported for the Meaning Loss Reveal deployment: 27 ms.
+- The deployment uploaded only three changed static assets, retained the existing `workers.dev` route, and did not configure a custom domain.
+- `OPENAI_API_KEY` was confirmed again on 2026-07-19 as an existing Cloudflare `secret_text` binding and was preserved with `--keep-vars`; the value was never printed or committed.
+- `wrangler versions list` confirmed the new version in Cloudflare's version history. A follow-up deployment-status request encountered the development network's intermittent Cloudflare connectivity failure, so this record does not claim a separate traffic-percentage readback for the new version.
 - Three known-example API requests returned the expected labeled fallback in a local Workers preview; arbitrary source without a key returned the expected 503.
 - The shell environment could not connect to the shared `workers.dev` domain, but the in-app browser observed the deployed homepage and GitHub Actions reached both the homepage and API. The API path is verified; the only observed live-model blocker is `insufficient_quota`.
 

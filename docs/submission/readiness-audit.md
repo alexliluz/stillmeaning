@@ -11,6 +11,7 @@ This records the live Devpost project and official OpenAI Build Week submission 
 - Category to select: **Developer Tools**
 - Repository: https://github.com/alexliluz/stillmeaning
 - Public hosted demo: https://stillmeaning.alexliluz.workers.dev
+- Hosted release: Meaning Loss Reveal was deployed to the existing `stillmeaning` Worker on 2026-07-19 as version `24ef0b28-6e5f-467d-a32f-966f4977abb5`; no custom domain or separate Cloudflare account was created
 - Devpost Project Story, Built with tags, repository URL, and demo URL: live version 6 was updated on 2026-07-18; the repository now contains a stronger Meaning Loss Reveal draft with the verified 45-test total that still needs to be copied to Devpost
 - 3:2 thumbnail: uploaded on 2026-07-18; existing local image assets predate Meaning Loss Reveal and should be refreshed before the two gallery screenshots are uploaded
 - Demo video: the verified 2:22 local MP4 predates Meaning Loss Reveal; the updated 2:40 script is ready, but a replacement render, public YouTube upload, and URL are not yet available
